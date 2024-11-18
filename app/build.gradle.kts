@@ -47,6 +47,8 @@ dependencies {
     implementation(libs.material)
     implementation(libs.androidx.activity)
     implementation(libs.androidx.constraintlayout)
+    implementation(libs.androidx.lifecycle.livedata.ktx)
+    implementation(libs.androidx.lifecycle.viewmodel.ktx)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
@@ -58,6 +60,9 @@ dependencies {
     // DaggerHilt
     implementation("com.google.dagger:hilt-android:2.51.1")
     kapt("com.google.dagger:hilt-android-compiler:2.51.1")
+    // Retrofit
+    implementation("com.squareup.retrofit2:retrofit:2.11.0")
+    implementation("com.squareup.retrofit2:converter-gson:2.11.0")
     // Room
     implementation("androidx.room:room-runtime:2.6.1")
     annotationProcessor("androidx.room:room-compiler:2.6.1")
