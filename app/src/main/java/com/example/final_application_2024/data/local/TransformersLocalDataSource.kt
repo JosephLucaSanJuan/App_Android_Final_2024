@@ -1,13 +1,13 @@
-package com.example.final_application_2024.data.remote
+package com.example.final_application_2024.data.local
 
-import kotlinx.coroutines.flow.Flow
 import com.example.final_application_2024.data.Transformer
+import kotlinx.coroutines.flow.Flow
 
-interface TransformersRemoteDataSource {
+interface TransformersLocalDataSource {
     suspend fun create(transformers:Transformer)
     suspend fun update(transformer:Transformer)
     suspend fun delete(transformer: Transformer)
-    suspend fun readAll():List<Transformer>
+    suspend fun readAll(): List<Transformer>
     suspend fun readOne(id:Int):Transformer
-    fun observeAll():Flow<List<Transformer>>
+    fun observeAll(): Flow<List<Transformer>>
 }

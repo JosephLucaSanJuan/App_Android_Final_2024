@@ -1,6 +1,7 @@
 package com.example.final_application_2024.data.local
 
 import androidx.room.Dao
+import androidx.room.Delete
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
@@ -20,6 +21,9 @@ interface TransformersDao {
 
     @Update
     suspend fun update(transformer: TransformersEntity)
+
+    @Delete
+    suspend fun delete(transformer: TransformersEntity)
 
     @Query("SELECT * FROM transformers")
     suspend fun readAll():List<TransformersEntity>

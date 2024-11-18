@@ -4,6 +4,6 @@ data class Transformer(
     val id:Int,
     val name:String,
     val alternateMode:String,
-    val faction:String,
+    //val faction:String,
     val gender:String
 )
