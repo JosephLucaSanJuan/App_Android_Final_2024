@@ -6,7 +6,11 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
 import com.example.final_application_2024.databinding.FragmentFactionBinding
+import kotlinx.coroutines.launch
 
 class FactionFragment : Fragment() {
 
@@ -30,6 +34,25 @@ class FactionFragment : Fragment() {
     ): View {
         binding = FragmentFactionBinding.inflate(inflater, container, false)
         return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        val recyclerView = binding.factionList
+        recyclerView.adapter = FactionListAdapter()
+        viewLifecycleOwner.lifecycleScope.launch {
+            repeatOnLifecycle(Lifecycle.State.STARTED) {
+                viewModel.uiState.collect {
+                    uiState -> when(uiState) {
+                        is FactionListUiState.Error -> TODO()
+                        is FactionListUiState.Loading -> TODO()
+                        is FactionListUiState.Success -> {
+                            (recyclerView.adapter as FactionListAdapter).submitList(viewModel.read())
+                        }
+                    }
+                }
+            }
+        }
     }
 
 }

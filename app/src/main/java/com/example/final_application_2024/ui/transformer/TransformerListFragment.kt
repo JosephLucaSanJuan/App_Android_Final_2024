@@ -9,6 +9,7 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
+import androidx.navigation.findNavController
 import com.example.final_application_2024.R
 import com.example.final_application_2024.databinding.FragmentTransformerListBinding
 import dagger.hilt.android.AndroidEntryPoint
@@ -44,6 +45,10 @@ class TransformerListFragment : Fragment() {
                     }
                 }
             }
+        }
+        binding.createRobotFab.setOnClickListener {
+            val action = TransformerListFragmentDirections.actionTransformerListFragmentToCreateRobotFragment()
+            view.findNavController().navigate(action)
         }
     }
 }

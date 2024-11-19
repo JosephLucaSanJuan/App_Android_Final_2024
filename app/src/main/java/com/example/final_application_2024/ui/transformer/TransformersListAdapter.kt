@@ -17,7 +17,7 @@ class TransformersListAdapter:ListAdapter<
         fun bind(transformer: Transformer){
             binding.transformerName.text = transformer.name
             binding.alternateMode.text = transformer.alternateMode
-            binding.faction.text = transformer.faction
+            binding.gender.text = transformer.gender
         }
     }
 

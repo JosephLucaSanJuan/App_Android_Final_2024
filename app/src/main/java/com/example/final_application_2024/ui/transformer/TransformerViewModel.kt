@@ -40,5 +40,6 @@ sealed class TransformersListUiState {
 
 data class TransformersUiState(
     val id:Int = 0,
-    val nombre:String = ""
+    val nombre:String = "",
+    val altMode:String = ""
 )

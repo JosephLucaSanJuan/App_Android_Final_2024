@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
-    app:startDestination="@id/transformerListFragment">
+    app:startDestination="@id/factionFragment">
 
     <fragment
         android:id="@+id/transformerListFragment"
@@ -18,9 +18,14 @@
         android:id="@+id/createRobotFragment"
         android:name="com.example.final_application_2024.ui.create_transformer.CreateRobotFragment"
         android:label="fragment_create_robot"
-        tools:layout="@layout/fragment_create_robot" >
+        tools:layout="@layout/fragment_create_robot" />
+    <fragment
+        android:id="@+id/factionFragment"
+        android:name="com.example.final_application_2024.ui.faction.FactionFragment"
+        android:label="fragment_faction"
+        tools:layout="@layout/fragment_faction" >
         <action
-            android:id="@+id/action_createRobotFragment_to_transformerListFragment"
+            android:id="@+id/action_factionFragment_to_transformerListFragment"
             app:destination="@id/transformerListFragment" />
     </fragment>
 </navigation>

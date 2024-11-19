@@ -25,12 +25,6 @@ class CreateRobotFragment : Fragment() {
     private val viewModel: CreateRobotViewModel by viewModels()
     private lateinit var binding: FragmentCreateRobotBinding
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-
-        // TODO: Use the ViewModel
-    }
-
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
