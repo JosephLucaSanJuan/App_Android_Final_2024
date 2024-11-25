@@ -7,6 +7,8 @@ data class TransformersListResponse(
 )
 
 data class TransformersListItemResponse(
+    val id:Int,
     val name:String,
-    val url:String
+    val altMode:String,
+    val gender:String
 )

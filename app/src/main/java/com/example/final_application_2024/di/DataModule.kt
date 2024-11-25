@@ -4,8 +4,11 @@ import com.example.final_application_2024.data.DefaultTransformersRepository
 import com.example.final_application_2024.data.FactionDefaultRepository
 import com.example.final_application_2024.data.FactionRepository
 import com.example.final_application_2024.data.TransformersRepository
+import com.example.final_application_2024.data.local.FactionLocalDatabase
+import com.example.final_application_2024.data.local.FactionsLocalDataSource
 import com.example.final_application_2024.data.local.TransformersLocalDataSource
 import com.example.final_application_2024.data.local.TransformersLocalDatabase
+import com.example.final_application_2024.data.remote.FactionsRemoteDataSource
 import com.example.final_application_2024.data.remote.TransformersNetworkDatabase
 import com.example.final_application_2024.data.remote.TransformersRemoteDataSource
 import dagger.Binds
@@ -34,4 +37,12 @@ abstract class DataModule {
     @Binds
     @Singleton
     abstract fun bindsTransformersRemote(repository: TransformersNetworkDatabase):TransformersRemoteDataSource
+
+    @Binds
+    @Singleton
+    abstract fun bindsFactionsLocal(repository: FactionLocalDatabase):FactionsLocalDataSource
+
+    @Binds
+    @Singleton
+    abstract fun bindsFactionsRemote(repository: TransformersNetworkDatabase):FactionsRemoteDataSource
 }
