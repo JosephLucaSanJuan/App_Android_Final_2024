@@ -18,7 +18,11 @@
         android:id="@+id/createRobotFragment"
         android:name="com.example.final_application_2024.ui.create_transformer.CreateRobotFragment"
         android:label="fragment_create_robot"
-        tools:layout="@layout/fragment_create_robot" />
+        tools:layout="@layout/fragment_create_robot" >
+        <action
+            android:id="@+id/action_createRobotFragment_to_transformerListFragment"
+            app:destination="@id/transformerListFragment" />
+    </fragment>
     <fragment
         android:id="@+id/factionFragment"
         android:name="com.example.final_application_2024.ui.faction.FactionFragment"
@@ -27,5 +31,41 @@
         <action
             android:id="@+id/action_factionFragment_to_transformerListFragment"
             app:destination="@id/transformerListFragment" />
+        <action
+            android:id="@+id/action_factionFragment_to_createFactionFragment"
+            app:destination="@id/createFactionFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/loginFragment"
+        android:name="com.example.final_application_2024.ui.login.LoginFragment"
+        android:label="fragment_login"
+        tools:layout="@layout/fragment_login" >
+        <action
+            android:id="@+id/action_loginFragment_to_factionFragment"
+            app:destination="@id/factionFragment" />
+        <action
+            android:id="@+id/action_loginFragment_to_registerFragment"
+            app:destination="@id/registerFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/registerFragment"
+        android:name="com.example.final_application_2024.ui.register.RegisterFragment"
+        android:label="fragment_register"
+        tools:layout="@layout/fragment_register" >
+        <action
+            android:id="@+id/action_registerFragment_to_factionFragment"
+            app:destination="@id/factionFragment" />
+        <action
+            android:id="@+id/action_registerFragment_to_loginFragment"
+            app:destination="@id/loginFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/createFactionFragment"
+        android:name="com.example.final_application_2024.ui.faction.CreateFactionFragment"
+        android:label="fragment_create_faction"
+        tools:layout="@layout/fragment_create_faction" >
+        <action
+            android:id="@+id/action_createFactionFragment_to_factionFragment"
+            app:destination="@id/factionFragment" />
     </fragment>
 </navigation>

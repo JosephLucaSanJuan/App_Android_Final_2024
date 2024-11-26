@@ -6,7 +6,12 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
+import androidx.navigation.findNavController
 import com.example.final_application_2024.databinding.FragmentRegisterBinding
+import kotlinx.coroutines.launch
 
 class RegisterFragment : Fragment() {
 
@@ -30,6 +35,31 @@ class RegisterFragment : Fragment() {
     ): View {
         binding = FragmentRegisterBinding.inflate(inflater, container, false)
         return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        viewLifecycleOwner.lifecycleScope.launch {
+            repeatOnLifecycle(Lifecycle.State.STARTED) {
+                viewModel.uiState.collect {
+                    uiState -> when(uiState) {
+                        is RegisterListUiState.InitialState -> TODO()
+                        is RegisterListUiState.Error -> TODO()
+                        is RegisterListUiState.Loading -> TODO()
+                        is RegisterListUiState.Registered -> {
+                            binding.registerButton.setOnClickListener {
+                                val action = RegisterFragmentDirections.actionRegisterFragmentToFactionFragment()
+                                view.findNavController().navigate(action)
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        binding.registerToLogin.setOnClickListener {
+            val action = RegisterFragmentDirections.actionRegisterFragmentToLoginFragment()
+            view.findNavController().navigate(action)
+        }
     }
 
 }

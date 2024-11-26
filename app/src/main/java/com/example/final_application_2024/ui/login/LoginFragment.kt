@@ -6,10 +6,17 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
+import androidx.navigation.findNavController
 import com.example.final_application_2024.databinding.FragmentLoginBinding
+import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.launch
 
 //import com.example.final_application_2024.ui.login.R
 
+@AndroidEntryPoint
 class LoginFragment : Fragment() {
 
     companion object {
@@ -33,5 +40,30 @@ class LoginFragment : Fragment() {
         binding = FragmentLoginBinding.inflate(inflater, container, false)
         return binding.root
     }/**/
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        viewLifecycleOwner.lifecycleScope.launch {
+            repeatOnLifecycle(Lifecycle.State.STARTED) {
+                viewModel.uiState.collect {
+                    uiState -> when(uiState) {
+                        is LoginListUiState.InitialState -> TODO()
+                        is LoginListUiState.Error -> TODO()
+                        is LoginListUiState.LoggingIn -> TODO()
+                        is LoginListUiState.LoggedIn -> {
+                            binding.loginButton.setOnClickListener {
+                                val action = LoginFragmentDirections.actionLoginFragmentToFactionFragment()
+                                view.findNavController().navigate(action)
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        binding.loginToRegister.setOnClickListener {
+            val action = LoginFragmentDirections.actionLoginFragmentToRegisterFragment()
+            view.findNavController().navigate(action)
+        }
+    }
 
 }
