@@ -1,6 +1,6 @@
 package com.example.final_application_2024.data
 
-import com.example.final_application_2024.data.local.FactionsLocalDataSource
+import com.example.final_application_2024.data.local.factions.FactionsLocalDataSource
 import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 

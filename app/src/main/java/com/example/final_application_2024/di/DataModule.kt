@@ -4,16 +4,15 @@ import com.example.final_application_2024.data.DefaultTransformersRepository
 import com.example.final_application_2024.data.FactionDefaultRepository
 import com.example.final_application_2024.data.FactionRepository
 import com.example.final_application_2024.data.TransformersRepository
-import com.example.final_application_2024.data.local.FactionLocalDatabase
-import com.example.final_application_2024.data.local.FactionsLocalDataSource
-import com.example.final_application_2024.data.local.TransformersLocalDataSource
-import com.example.final_application_2024.data.local.TransformersLocalDatabase
+import com.example.final_application_2024.data.local.factions.FactionLocalDatabase
+import com.example.final_application_2024.data.local.factions.FactionsLocalDataSource
+import com.example.final_application_2024.data.local.transformers.TransformersLocalDataSource
+import com.example.final_application_2024.data.local.transformers.TransformersLocalDatabase
 import com.example.final_application_2024.data.remote.FactionsRemoteDataSource
 import com.example.final_application_2024.data.remote.TransformersNetworkDatabase
 import com.example.final_application_2024.data.remote.TransformersRemoteDataSource
 import dagger.Binds
 import dagger.Module
-import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
 import javax.inject.Singleton
@@ -32,7 +31,7 @@ abstract class DataModule {
 
     @Binds
     @Singleton
-    abstract fun bindsTransformersLocal(repository: TransformersLocalDatabase):TransformersLocalDataSource
+    abstract fun bindsTransformersLocal(repository: TransformersLocalDatabase): TransformersLocalDataSource
 
     @Binds
     @Singleton
@@ -40,7 +39,7 @@ abstract class DataModule {
 
     @Binds
     @Singleton
-    abstract fun bindsFactionsLocal(repository: FactionLocalDatabase):FactionsLocalDataSource
+    abstract fun bindsFactionsLocal(repository: FactionLocalDatabase): FactionsLocalDataSource
 
     @Binds
     @Singleton

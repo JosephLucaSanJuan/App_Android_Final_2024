@@ -1,4 +1,4 @@
-package com.example.final_application_2024.data.local
+package com.example.final_application_2024.data.local.transformers
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey

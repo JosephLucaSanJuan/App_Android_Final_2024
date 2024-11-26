@@ -2,8 +2,8 @@ package com.example.final_application_2024.di
 
 import android.content.Context
 import androidx.room.Room
-import com.example.final_application_2024.data.local.TransformersDao
-import com.example.final_application_2024.data.local.TransformersDatabase
+import com.example.final_application_2024.data.local.transformers.TransformersDao
+import com.example.final_application_2024.data.local.transformers.TransformersDatabase
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -26,5 +26,5 @@ class LocalModule {
     }
 
     @Provides
-    fun provideDao(transformersDatabase:TransformersDatabase): TransformersDao = transformersDatabase.transformersDao()
+    fun provideDao(transformersDatabase: TransformersDatabase): TransformersDao = transformersDatabase.transformersDao()
 }

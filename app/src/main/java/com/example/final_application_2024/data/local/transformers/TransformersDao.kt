@@ -1,4 +1,4 @@
-package com.example.final_application_2024.data.local
+package com.example.final_application_2024.data.local.transformers
 
 import androidx.room.Dao
 import androidx.room.Delete
@@ -11,13 +11,13 @@ import kotlinx.coroutines.flow.Flow
 @Dao
 interface TransformersDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun create(transformer:TransformersEntity)
+    suspend fun create(transformer: TransformersEntity)
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun create(transformer:List<TransformersEntity>)
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun create(vararg transformer:TransformersEntity)
+    suspend fun create(vararg transformer: TransformersEntity)
 
     @Update
     suspend fun update(transformer: TransformersEntity)
@@ -29,7 +29,7 @@ interface TransformersDao {
     suspend fun readAll():List<TransformersEntity>
 
     @Query("SELECT * FROM transformers WHERE id LIKE :id")
-    suspend fun readOne(id:Int):TransformersEntity
+    suspend fun readOne(id:Int): TransformersEntity
 
     @Query("SELECT * FROM transformers")
     fun observeAll():Flow<List<TransformersEntity>>

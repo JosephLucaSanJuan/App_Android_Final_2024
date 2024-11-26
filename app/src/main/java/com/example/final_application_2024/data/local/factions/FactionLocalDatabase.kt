@@ -1,4 +1,4 @@
-package com.example.final_application_2024.data.local
+package com.example.final_application_2024.data.local.factions
 
 import com.example.final_application_2024.data.Faction
 import kotlinx.coroutines.flow.Flow
@@ -7,7 +7,7 @@ import javax.inject.Inject
 
 class FactionLocalDatabase @Inject constructor(
     private val dao: FactionDao
-):FactionsLocalDataSource {
+): FactionsLocalDataSource {
     override suspend fun create(faction: Faction) {
         dao.create(faction.toLocal())
     }

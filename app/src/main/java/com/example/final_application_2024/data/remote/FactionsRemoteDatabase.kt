@@ -1,7 +1,7 @@
 package com.example.final_application_2024.data.remote
 
 import com.example.final_application_2024.data.Faction
-import com.example.final_application_2024.data.local.FactionDao
+import com.example.final_application_2024.data.local.factions.FactionDao
 import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 
