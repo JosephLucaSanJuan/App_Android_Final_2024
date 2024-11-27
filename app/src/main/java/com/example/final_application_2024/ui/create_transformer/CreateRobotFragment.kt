@@ -36,12 +36,23 @@ class CreateRobotFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val adapter = TransformersListAdapter()
+        /*val adapter = TransformersListAdapter()
         val rv = binding.createRobot
-        rv.adapter = adapter
+        rv.adapter = adapter*/
         viewLifecycleOwner.lifecycleScope.launch {
             repeatOnLifecycle(Lifecycle.State.STARTED){
-                viewModel.uiState.collect()
+                viewModel.uiState.collect {
+                    uiState -> when(uiState) {
+                        is CreateRobotListUiState.Error -> TODO()
+                        is CreateRobotListUiState.InitialState -> TODO()
+                        is CreateRobotListUiState.Loading -> TODO()
+                        is CreateRobotListUiState.Finished -> {
+                            binding.saveTransformer.setOnClickListener {
+                                //val action =
+                            }
+                        }
+                    }
+                }
             }
         }
     }

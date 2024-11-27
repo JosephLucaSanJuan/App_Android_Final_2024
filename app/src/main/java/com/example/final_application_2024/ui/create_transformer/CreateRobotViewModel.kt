@@ -8,9 +8,16 @@ import javax.inject.Inject
 
 @HiltViewModel
 class CreateRobotViewModel @Inject constructor() : ViewModel() {
-    private val _uiState = MutableStateFlow<CreateRobotUiState>(CreateRobotUiState("","",""))
+    private val _uiState = MutableStateFlow<CreateRobotListUiState>(CreateRobotListUiState.Loading)
     val uiState
         get() = _uiState.asStateFlow()
+}
+
+sealed class CreateRobotListUiState {
+    data object InitialState : CreateRobotListUiState()
+    data object Loading : CreateRobotListUiState()
+    class Error(message:String) : CreateRobotListUiState()
+    data object Finished : CreateRobotListUiState()
 }
 
 data class CreateRobotUiState(
