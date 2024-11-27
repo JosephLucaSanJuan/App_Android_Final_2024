@@ -4,9 +4,11 @@ import com.example.final_application_2024.data.Transformer
 import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 
-class TransformersNetworkDatabase @Inject constructor():TransformersRemoteDataSource {
-    override suspend fun create(transformers: Transformer) {
-        TODO("Not yet implemented")
+class TransformersNetworkDatabase @Inject constructor(
+    private val api: TransformersApi
+):TransformersRemoteDataSource {
+    override suspend fun create(transformer: Transformer) {
+        api.create(transformer)
     }
 
     override suspend fun update(transformer: Transformer) {

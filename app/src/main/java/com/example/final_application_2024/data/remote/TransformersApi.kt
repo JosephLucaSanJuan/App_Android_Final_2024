@@ -11,13 +11,13 @@ import retrofit2.http.Path
 
 interface TransformersApi {
     @POST("api/v2/transformers")
-    suspend fun create(@Body transformer: Transformer):TransformersListResponse
+    suspend fun create(@Body transformer: Transformer)//:TransformersListResponse
 
     @PUT("api/v2/transformers/{id}")
     suspend fun update(@Path("id") id:String):TransformersListResponse
 
     @DELETE("api/v2/transformers/{id}")
-    suspend fun delete()//:Response<TransformersListResponse>
+    suspend fun delete(@Path("id") id: String)//:Response<TransformersListResponse>
 
     @GET("api/v2/transformers")
     suspend fun readAll():Response<TransformersListResponse>

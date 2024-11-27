@@ -9,6 +9,7 @@ import com.example.final_application_2024.data.local.factions.FactionsLocalDataS
 import com.example.final_application_2024.data.local.transformers.TransformersLocalDataSource
 import com.example.final_application_2024.data.local.transformers.TransformersLocalDatabase
 import com.example.final_application_2024.data.remote.FactionsRemoteDataSource
+import com.example.final_application_2024.data.remote.FactionsRemoteDatabase
 import com.example.final_application_2024.data.remote.TransformersNetworkDatabase
 import com.example.final_application_2024.data.remote.TransformersRemoteDataSource
 import dagger.Binds
@@ -43,5 +44,5 @@ abstract class DataModule {
 
     @Binds
     @Singleton
-    abstract fun bindsFactionsRemote(repository: TransformersNetworkDatabase):FactionsRemoteDataSource
+    abstract fun bindsFactionsRemote(repository: FactionsRemoteDatabase):FactionsRemoteDataSource
 }
