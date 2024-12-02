@@ -13,19 +13,19 @@ class DefaultTransformersRepository @Inject constructor(
         localDataSource.create(transformer)
     }
 
-    override suspend fun update(transformer: Transformer) {
-        localDataSource.update(transformer)
+    override suspend fun update(id: String, transformer: Transformer) {
+        localDataSource.update(id, transformer)
     }
 
-    override suspend fun delete(transformer: Transformer) {
-        localDataSource.delete(transformer)
+    override suspend fun delete(id: String) {
+        localDataSource.delete(id)
     }
 
     override suspend fun readAll(): List<Transformer> {
         return remoteDataSource.readAll()
     }
 
-    override suspend fun readOne(id: Int): Transformer {
+    override suspend fun readOne(id: String): Transformer {
         return remoteDataSource.readOne(id)
     }
 

@@ -14,22 +14,22 @@ interface FactionDao {
     suspend fun create(faction: FactionEntity)
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun create(factions:List<FactionEntity>)
+    suspend fun create(factions: List<FactionEntity>)
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun create(vararg faction: FactionEntity)
 
     @Update
-    suspend fun update(faction: FactionEntity)
+    suspend fun update(id: String, faction: FactionEntity)
 
     @Delete
-    suspend fun delete(faction: FactionEntity)
+    suspend fun delete(id: String)
 
     @Query("SELECT * FROM factions")
     suspend fun readAll():List<FactionEntity>
 
     @Query("SELECT * FROM factions WHERE id LIKE :id")
-    suspend fun readOne(id:Int): FactionEntity
+    suspend fun readOne(id: String): FactionEntity
 
     @Query("SELECT * FROM factions")
     fun observeAll(): Flow<List<FactionEntity>>

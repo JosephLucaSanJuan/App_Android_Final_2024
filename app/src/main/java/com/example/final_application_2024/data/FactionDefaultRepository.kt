@@ -12,19 +12,19 @@ class FactionDefaultRepository @Inject constructor(
         localDataSource.create(faction)
     }
 
-    override suspend fun update(faction: Faction) {
-        localDataSource.update(faction)
+    override suspend fun update(id: String, faction: Faction) {
+        localDataSource.update(id, faction)
     }
 
-    override suspend fun delete(faction: Faction) {
-        localDataSource.delete(faction)
+    override suspend fun delete(id: String) {
+        localDataSource.delete(id)
     }
 
     override suspend fun readAll(): List<Faction> {
         return remoteDataSource.readAll()
     }
 
-    override suspend fun readOne(id: Int): Faction {
+    override suspend fun readOne(id: String): Faction {
         return remoteDataSource.readOne(id)
     }
 

@@ -12,11 +12,11 @@ class FactionsRemoteDatabase @Inject constructor(
         TODO("Not yet implemented")
     }
 
-    override suspend fun update(faction: Faction) {
+    override suspend fun update(id: String, faction: Faction) {
         TODO("Not yet implemented")
     }
 
-    override suspend fun delete(faction: Faction) {
+    override suspend fun delete(id: String) {
         TODO("Not yet implemented")
     }
 
@@ -24,7 +24,7 @@ class FactionsRemoteDatabase @Inject constructor(
         TODO("Not yet implemented")
     }
 
-    override suspend fun readOne(id: Int): Faction {
+    override suspend fun readOne(id: String): Faction {
         TODO("Not yet implemented")
     }
 

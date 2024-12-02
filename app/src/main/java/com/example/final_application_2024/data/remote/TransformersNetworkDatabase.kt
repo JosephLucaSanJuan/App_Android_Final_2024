@@ -31,7 +31,7 @@ class TransformersNetworkDatabase @Inject constructor(
     }
 
     override suspend fun readOne(id: String): Transformer {
-        return this.api.readOne(id).toLocal()
+        TODO("Not yet implemented")//return this.api.readOne(id).toLocal()
     }
 
     override fun observeAll(): Flow<List<Transformer>> {

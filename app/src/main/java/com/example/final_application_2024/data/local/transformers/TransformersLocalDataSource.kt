@@ -5,9 +5,9 @@ import kotlinx.coroutines.flow.Flow
 
 interface TransformersLocalDataSource {
     suspend fun create(transformers:Transformer)
-    suspend fun update(transformer:Transformer)
-    suspend fun delete(transformer: Transformer)
+    suspend fun update(id:String, transformer:Transformer)
+    suspend fun delete(id:String)
     suspend fun readAll(): List<Transformer>
-    suspend fun readOne(id:Int):Transformer
+    suspend fun readOne(id:String):Transformer
     fun observeAll(): Flow<List<Transformer>>
 }
