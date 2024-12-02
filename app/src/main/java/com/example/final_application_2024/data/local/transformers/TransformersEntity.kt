@@ -5,7 +5,7 @@ import androidx.room.PrimaryKey
 
 @Entity(tableName = "transformers")
 data class TransformersEntity(
-    @PrimaryKey val id:Int = 0,
+    @PrimaryKey val id:String = "",
                 val name:String = "",
                 val altMode:String = "",
                 val gender:String = ""

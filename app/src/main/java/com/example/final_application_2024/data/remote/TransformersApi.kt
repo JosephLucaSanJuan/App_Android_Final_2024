@@ -14,7 +14,7 @@ interface TransformersApi {
     suspend fun create(@Body transformer: Transformer)//:TransformersListResponse
 
     @PUT("api/v2/transformers/{id}")
-    suspend fun update(@Path("id") id:String):TransformersListResponse
+    suspend fun update(@Path("id") id:String, @Body transformer: Transformer):TransformersListResponse
 
     @DELETE("api/v2/transformers/{id}")
     suspend fun delete(@Path("id") id: String)//:Response<TransformersListResponse>

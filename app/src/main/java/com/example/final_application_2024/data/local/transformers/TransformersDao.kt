@@ -20,16 +20,16 @@ interface TransformersDao {
     suspend fun create(vararg transformer: TransformersEntity)
 
     @Update
-    suspend fun update(transformer: TransformersEntity)
+    suspend fun update(id: String, transformer: TransformersEntity)
 
     @Delete
-    suspend fun delete(transformer: TransformersEntity)
+    suspend fun delete(id: String)
 
     @Query("SELECT * FROM transformers")
     suspend fun readAll():List<TransformersEntity>
 
     @Query("SELECT * FROM transformers WHERE id LIKE :id")
-    suspend fun readOne(id:Int): TransformersEntity
+    suspend fun readOne(id:String): TransformersEntity
 
     @Query("SELECT * FROM transformers")
     fun observeAll():Flow<List<TransformersEntity>>
