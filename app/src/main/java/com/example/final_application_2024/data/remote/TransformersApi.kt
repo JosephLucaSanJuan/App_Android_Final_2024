@@ -1,5 +1,6 @@
 package com.example.final_application_2024.data.remote
 
+import com.example.final_application_2024.data.Faction
 import com.example.final_application_2024.data.Transformer
 import retrofit2.Response
 import retrofit2.http.Body
@@ -10,18 +11,41 @@ import retrofit2.http.PUT
 import retrofit2.http.Path
 
 interface TransformersApi {
-    @POST("api/v2/transformers")
-    suspend fun create(@Body transformer: Transformer)//:TransformersListResponse
+    @POST("api/transformers")
+    suspend fun createTransformer(@Body transformer:Transformer)//:TransformersListResponse
 
-    @PUT("api/v2/transformers/{id}")
-    suspend fun update(@Path("id") id:String, @Body transformer: Transformer):TransformersListResponse
+    @PUT("api/transformers/{id}")
+    suspend fun updateTransformer(@Path("id") id:String, @Body transformer:Transformer):TransformersListResponse
 
-    @DELETE("api/v2/transformers/{id}")
-    suspend fun delete(@Path("id") id: String)//:Response<TransformersListResponse>
+    @DELETE("api/transformers/{id}")
+    suspend fun deleteTransformer(@Path("id") id:String)//:Response<TransformersListResponse>
 
-    @GET("api/v2/transformers")
-    suspend fun readAll():Response<TransformersListResponse>
+    @GET("api/transformers")
+    suspend fun readAllTransformers():Response<TransformersListResponse>
 
-    @GET("api/v2/transformers/{id}")
-    suspend fun readOne(@Path("id") id:String):TransformersListResponse
+    @GET("api/transformers/{id}")
+    suspend fun readOneTransformer(@Path("id") id:String):TransformersListItemResponse
+
+    @POST("api/factions")
+    suspend fun createFaction(@Body faction:Faction)
+
+    @PUT("api/factions/{id}")
+    suspend fun updateFaction(@Path("id") id:String, @Body faction:Faction):FactionListResponse
+
+    @DELETE("api/factions/{id}")
+    suspend fun deleteFaction(@Path("id") id:String)
+
+    @GET("api/factions")
+    suspend fun readAllFactions():Response<FactionListResponse>
+
+    @GET("api/factions/{id}")
+    suspend fun readOneFaction(@Path("id") id:String):FactionListItemResponse
+
+    @POST("api/")
+    suspend fun login(email:String, password:String)
+
+    @POST("api/users")
+    suspend fun register(name: String, surname: String, email: String, password: String)
+
+    suspend fun logout()
 }

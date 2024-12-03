@@ -49,6 +49,9 @@ class CreateFactionFragment : Fragment() {
         }
         binding.saveFaction.setOnClickListener {
             val action = CreateFactionFragmentDirections.actionCreateFactionFragmentToFactionFragment()
+            viewModel.createFaction(
+                binding.nameInput.text.toString()
+            )
             view.findNavController().navigate(action)
         }
     }

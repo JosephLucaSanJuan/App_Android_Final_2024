@@ -10,19 +10,19 @@ class TransformersNetworkDatabase @Inject constructor(
     private val api: TransformersApi
 ):TransformersRemoteDataSource {
     override suspend fun create(transformer: Transformer) {
-        api.create(transformer)
+        api.createTransformer(transformer)
     }
 
     override suspend fun update(id: String, transformer: Transformer) {
-        api.update(id, transformer)
+        api.updateTransformer(id, transformer)
     }
 
     override suspend fun delete(id: String) {
-        api.delete(id)
+        api.deleteTransformer(id)
     }
 
     override suspend fun readAll(): List<Transformer> {
-        val result = api.readAll()
+        val result = api.readAllTransformers()
         return if (result.isSuccessful) {
             result.body()!!.toExternal()
         } else {
@@ -31,7 +31,7 @@ class TransformersNetworkDatabase @Inject constructor(
     }
 
     override suspend fun readOne(id: String): Transformer {
-        TODO("Not yet implemented")//return this.api.readOne(id).toLocal()
+        return this.api.readOneTransformer(id).toLocal()
     }
 
     override fun observeAll(): Flow<List<Transformer>> {

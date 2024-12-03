@@ -1,31 +1,38 @@
 package com.example.final_application_2024.data.remote
 
 import com.example.final_application_2024.data.Faction
+import com.example.final_application_2024.data.Transformer
 import com.example.final_application_2024.data.local.factions.FactionDao
+import com.example.final_application_2024.data.toExternal
 import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 
 class FactionsRemoteDatabase @Inject constructor(
-    private val dao: FactionDao
+    private val api: TransformersApi
 ):FactionsRemoteDataSource {
     override suspend fun create(faction: Faction) {
-        TODO("Not yet implemented")
+        api.createFaction(faction)
     }
 
     override suspend fun update(id: String, faction: Faction) {
-        TODO("Not yet implemented")
+        api.updateFaction(id, faction)
     }
 
     override suspend fun delete(id: String) {
-        TODO("Not yet implemented")
+        api.deleteFaction(id)
     }
 
     override suspend fun readAll(): List<Faction> {
-        TODO("Not yet implemented")
+        val result = api.readAllFactions()
+        return if (result.isSuccessful) {
+            result.body()!!.toExternal()
+        } else {
+            listOf<Faction>()
+        }
     }
 
     override suspend fun readOne(id: String): Faction {
-        TODO("Not yet implemented")
+        return this.api.readOneFaction(id).toExternal()
     }
 
     override fun observeAll(): Flow<List<Faction>> {

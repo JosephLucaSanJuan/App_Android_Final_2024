@@ -9,7 +9,7 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import javax.inject.Singleton
 
-private const val TRANSFORMER_API_URL = ""
+private const val TRANSFORMER_API_URL = "https://transformers-service.onrender.com/"
 
 @Module
 @InstallIn(SingletonComponent::class)

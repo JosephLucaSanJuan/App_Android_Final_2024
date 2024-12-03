@@ -1,16 +1,32 @@
 package com.example.final_application_2024.ui.create_transformer
 
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
+import androidx.lifecycle.viewmodel.compose.viewModel
+import com.example.final_application_2024.data.Transformer
+import com.example.final_application_2024.data.TransformersRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.launch
+import java.util.UUID
 import javax.inject.Inject
 
 @HiltViewModel
-class CreateRobotViewModel @Inject constructor() : ViewModel() {
+class CreateRobotViewModel @Inject constructor(
+    private val repository: TransformersRepository
+) : ViewModel() {
     private val _uiState = MutableStateFlow<CreateRobotListUiState>(CreateRobotListUiState.Loading)
     val uiState
         get() = _uiState.asStateFlow()
+
+    fun createRobot(name:String, altMode:String, gender:String) {
+        val newTF = Transformer(UUID.randomUUID().toString(), name, altMode, gender)
+        viewModelScope.launch {
+            repository.create(newTF)
+        }
+    }
+
 }
 
 sealed class CreateRobotListUiState {

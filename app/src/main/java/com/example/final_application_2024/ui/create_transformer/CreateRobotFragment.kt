@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
+import androidx.navigation.findNavController
 import com.example.final_application_2024.databinding.FragmentCreateRobotBinding
 import com.example.final_application_2024.ui.transformer.TransformersListAdapter
 import dagger.hilt.android.AndroidEntryPoint
@@ -38,7 +39,7 @@ class CreateRobotFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         /*val adapter = TransformersListAdapter()
         val rv = binding.createRobot
-        rv.adapter = adapter*/
+        rv.adapter = adapter
         viewLifecycleOwner.lifecycleScope.launch {
             repeatOnLifecycle(Lifecycle.State.STARTED){
                 viewModel.uiState.collect {
@@ -48,12 +49,21 @@ class CreateRobotFragment : Fragment() {
                         is CreateRobotListUiState.Loading -> TODO()
                         is CreateRobotListUiState.Finished -> {
                             binding.saveTransformer.setOnClickListener {
-                                //val action =
+                                //
                             }
                         }
                     }
                 }
             }
+        }*/
+        binding.saveTransformer.setOnClickListener {
+            val action = CreateRobotFragmentDirections.actionCreateRobotFragmentToTransformerListFragment()
+            viewModel.createRobot(
+                binding.nameInput.text.toString(),
+                binding.altModeInput.text.toString(),
+                binding.genderSelection.toString()
+            )
+            view.findNavController().navigate(action)
         }
     }
 

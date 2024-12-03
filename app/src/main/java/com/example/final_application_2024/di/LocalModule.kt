@@ -3,9 +3,8 @@ package com.example.final_application_2024.di
 import android.content.Context
 import androidx.room.Room
 import com.example.final_application_2024.data.local.factions.FactionDao
-import com.example.final_application_2024.data.local.factions.FactionDatabase
 import com.example.final_application_2024.data.local.transformers.TransformersDao
-import com.example.final_application_2024.data.local.transformers.TransformersDatabase
+import com.example.final_application_2024.data.TransformersDatabase
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -31,16 +30,5 @@ class LocalModule {
     fun provideTransformersDao(transformersDatabase: TransformersDatabase): TransformersDao = transformersDatabase.transformersDao()
 
     @Provides
-    @Singleton
-    fun provideFactionsDatabase(@ApplicationContext context: Context): FactionDatabase {
-        val database = Room.databaseBuilder(
-            context,
-            FactionDatabase::class.java,
-            "factions-db"
-        )
-        return database.build()
-    }
-
-    @Provides
-    fun provideFactionsDao(factionsDatabase: FactionDatabase): FactionDao = factionsDatabase.factionsDao()
+    fun provideFactionsDao(transformersDatabase: TransformersDatabase): FactionDao = transformersDatabase.factionDao()
 }
