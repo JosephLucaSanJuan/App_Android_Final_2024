@@ -12,8 +12,10 @@ import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.findNavController
 import com.example.final_application_2024.R
 import com.example.final_application_2024.databinding.FragmentCreateFactionBinding
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
+@AndroidEntryPoint
 class CreateFactionFragment : Fragment() {
 
     companion object {

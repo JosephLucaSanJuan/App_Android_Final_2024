@@ -21,14 +21,16 @@ class LocalModule {
         val database = Room.databaseBuilder(
             context,
             TransformersDatabase::class.java,
-            "transformers-db"
+            "transformers"
         )
         return database.build()
     }
 
     @Provides
+    @Singleton
     fun provideTransformersDao(transformersDatabase: TransformersDatabase): TransformersDao = transformersDatabase.transformersDao()
 
     @Provides
+    @Singleton
     fun provideFactionsDao(transformersDatabase: TransformersDatabase): FactionDao = transformersDatabase.factionDao()
 }

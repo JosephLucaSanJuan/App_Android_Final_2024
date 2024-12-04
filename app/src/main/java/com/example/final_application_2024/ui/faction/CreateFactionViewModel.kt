@@ -21,7 +21,7 @@ class CreateFactionViewModel @Inject constructor(
         get() = _uiState.asStateFlow()
 
     fun createFaction(name:String) {
-        val newFaction = Faction(UUID.randomUUID().toString(), name)
+        val newFaction = Faction(0, name)
         viewModelScope.launch {
             repository.create(newFaction)
         }

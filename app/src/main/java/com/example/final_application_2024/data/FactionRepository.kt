@@ -4,9 +4,9 @@ import kotlinx.coroutines.flow.Flow
 
 interface FactionRepository {
     suspend fun create(faction:Faction)
-    suspend fun update(id:String, faction:Faction)
-    suspend fun delete(id:String)
+    suspend fun update(faction:Faction)
+    suspend fun delete(faction:Faction)
     suspend fun readAll():List<Faction>
-    suspend fun readOne(id:String):Faction
+    suspend fun readOne(id:Int):Faction
     fun observeAll(): Flow<List<Faction>>
 }

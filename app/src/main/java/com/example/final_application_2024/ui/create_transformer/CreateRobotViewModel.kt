@@ -21,7 +21,7 @@ class CreateRobotViewModel @Inject constructor(
         get() = _uiState.asStateFlow()
 
     fun createRobot(name:String, altMode:String, gender:String) {
-        val newTF = Transformer(UUID.randomUUID().toString(), name, altMode, gender)
+        val newTF = Transformer(0, name, altMode, gender)
         viewModelScope.launch {
             repository.create(newTF)
         }
