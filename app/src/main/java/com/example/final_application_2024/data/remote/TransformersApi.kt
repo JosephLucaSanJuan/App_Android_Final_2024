@@ -14,17 +14,17 @@ interface TransformersApi {
     @POST("api/transformers")
     suspend fun createTransformer(@Body transformer:Transformer)//:TransformersListResponse
 
-    @PUT("api/transformers/{id}")
-    suspend fun updateTransformer(@Path("id") id:String, @Body transformer:Transformer):TransformersListResponse
+    @PUT("api/transformers")
+    suspend fun updateTransformer(@Body transformer:Transformer):TransformersListResponse
 
-    @DELETE("api/transformers/{id}")
-    suspend fun deleteTransformer(@Path("id") id:String)//:Response<TransformersListResponse>
+    @DELETE("api/transformers")
+    suspend fun deleteTransformer(@Body transformer:Transformer)//:Response<TransformersListResponse>
 
     @GET("api/transformers")
     suspend fun readAllTransformers():Response<TransformersListResponse>
 
     @GET("api/transformers/{id}")
-    suspend fun readOneTransformer(@Path("id") id:String):TransformersListItemResponse
+    suspend fun readOneTransformer(@Path("id") id:Int):TransformersListItemResponse
 
     @POST("api/factions")
     suspend fun createFaction(@Body faction:Faction)

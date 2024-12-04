@@ -7,7 +7,7 @@ data class TransformersListResponse(
 )
 
 data class TransformersListItemResponse(
-    val id:String,
+    val id:Int,
     val name:String,
     val altMode:String,
     val gender:String
@@ -20,7 +20,7 @@ data class FactionListResponse(
 )
 
 data class FactionListItemResponse(
-    val id:String,
+    val id:Int,
     val name:String
 )
 

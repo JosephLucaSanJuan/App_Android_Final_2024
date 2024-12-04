@@ -13,12 +13,12 @@ class TransformersNetworkDatabase @Inject constructor(
         api.createTransformer(transformer)
     }
 
-    override suspend fun update(id: String, transformer: Transformer) {
-        api.updateTransformer(id, transformer)
+    override suspend fun update(transformer: Transformer) {
+        api.updateTransformer(transformer)
     }
 
-    override suspend fun delete(id: String) {
-        api.deleteTransformer(id)
+    override suspend fun delete(transformer: Transformer) {
+        api.deleteTransformer(transformer)
     }
 
     override suspend fun readAll(): List<Transformer> {
@@ -30,7 +30,7 @@ class TransformersNetworkDatabase @Inject constructor(
         }
     }
 
-    override suspend fun readOne(id: String): Transformer {
+    override suspend fun readOne(id: Int): Transformer {
         return this.api.readOneTransformer(id).toLocal()
     }
 

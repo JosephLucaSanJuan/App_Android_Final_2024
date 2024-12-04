@@ -12,20 +12,20 @@ class TransformersLocalDatabase @Inject constructor(
         dao.create(transformers.toLocal())
     }
 
-    override suspend fun update(id:String, transformer: Transformer) {
-        dao.update(id, transformer.toLocal())
+    override suspend fun update(transformer: Transformer) {
+        dao.update(transformer.toLocal())
     }
 
-    override suspend fun delete(id: String) {
-        dao.delete(id)
+    override suspend fun delete(transformer: Transformer) {
+        dao.delete(transformer.toLocal())
     }
 
     override suspend fun readAll(): List<Transformer> {
         return dao.readAll().toExternal()
     }
 
-    override suspend fun readOne(id: String): Transformer {
-        return dao.readOne(id).toExternal()
+    override suspend fun readOne(id: Int): Transformer {
+        return (dao.readOne(id)).toExternal()
     }
 
     override fun observeAll(): Flow<List<Transformer>> {

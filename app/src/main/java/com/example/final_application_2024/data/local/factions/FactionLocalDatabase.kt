@@ -12,19 +12,19 @@ class FactionLocalDatabase @Inject constructor(
         dao.create(faction.toLocal())
     }
 
-    override suspend fun update(id: String, faction: Faction) {
-        dao.update(id, faction.toLocal())
+    override suspend fun update(faction: Faction) {
+        dao.update(faction.toLocal())
     }
 
-    override suspend fun delete(id: String) {
-        dao.delete(id)
+    override suspend fun delete(faction: Faction) {
+        dao.delete(faction.toLocal())
     }
 
     override suspend fun readAll(): List<Faction> {
         return dao.readAll().toExternal()
     }
 
-    override suspend fun readOne(id: String): Faction {
+    override suspend fun readOne(id: Int): Faction {
         return dao.readOne(id).toExternal()
     }
 

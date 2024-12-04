@@ -20,16 +20,16 @@ interface FactionDao {
     suspend fun create(vararg faction: FactionEntity)
 
     @Update
-    suspend fun update(id: String, faction: FactionEntity)
+    suspend fun update(faction: FactionEntity)
 
     @Delete
-    suspend fun delete(id: String)
+    suspend fun delete(faction: FactionEntity)
 
     @Query("SELECT * FROM factions")
     suspend fun readAll():List<FactionEntity>
 
     @Query("SELECT * FROM factions WHERE id LIKE :id")
-    suspend fun readOne(id: String): FactionEntity
+    suspend fun readOne(id: Int): FactionEntity
 
     @Query("SELECT * FROM factions")
     fun observeAll(): Flow<List<FactionEntity>>

@@ -5,6 +5,6 @@ import androidx.room.PrimaryKey
 
 @Entity(tableName = "factions")
 data class FactionEntity(
-    @PrimaryKey val id:String = "",
+    @PrimaryKey val id:Int = 0,
                 val name:String = ""
 )
