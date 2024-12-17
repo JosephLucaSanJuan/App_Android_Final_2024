@@ -1,7 +1,10 @@
 package com.example.final_application_2024.data
 
+import com.example.final_application_2024.data.remote.AuthResponseBody
+import com.example.final_application_2024.data.remote.AuthResponseUser
 import com.example.final_application_2024.data.remote.FactionListItemResponse
 import com.example.final_application_2024.data.remote.FactionListResponse
+import com.example.final_application_2024.data.remote.RegisterResponseBody
 import com.example.final_application_2024.data.remote.TransformersListItemResponse
 import com.example.final_application_2024.data.remote.TransformersListResponse
 
@@ -35,5 +38,16 @@ fun FactionListItemResponse.toExternal(): Faction {
     return Faction(
         id = this.id,
         name = this.name
+    )
+}
+
+fun AuthResponseBody.toUser(): User {
+    return User(
+        id = this.user.id,
+        name = this.user.username,
+        //surname = this.user.surname,
+        email = this.user.email,
+        //password = this.user.password,
+        token = this.jwt
     )
 }

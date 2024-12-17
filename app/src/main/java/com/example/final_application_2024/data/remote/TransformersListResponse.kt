@@ -24,3 +24,27 @@ data class FactionListItemResponse(
     val name:String
 )
 
+data class AuthResponseBody(
+    val jwt:String,
+    val user:AuthResponseUser
+)
+
+data class LoginResponseBody(
+    val identifier:String,
+    val password:String
+)
+
+data class AuthResponseUser(
+    val id:Int,
+    val username:String,
+    //val surname:String,
+    val email:String,
+    //val password:String
+)
+
+data class RegisterResponseBody(
+    val name:String,
+    val surname:String,
+    val email:String,
+    val password:String
+)

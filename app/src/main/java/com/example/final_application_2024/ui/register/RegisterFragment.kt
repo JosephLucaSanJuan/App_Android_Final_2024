@@ -47,7 +47,7 @@ class RegisterFragment : Fragment() {
                     uiState -> when(uiState) {
                         is RegisterListUiState.InitialState -> TODO()
                         is RegisterListUiState.Error -> TODO()
-                        is RegisterListUiState.Loading -> TODO()
+                        is RegisterListUiState.Loading -> {}
                         is RegisterListUiState.Registered -> {
                             binding.registerButton.setOnClickListener {
                                 val action = RegisterFragmentDirections.actionRegisterFragmentToFactionFragment()

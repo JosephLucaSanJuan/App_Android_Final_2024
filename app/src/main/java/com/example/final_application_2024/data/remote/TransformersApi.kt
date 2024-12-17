@@ -41,11 +41,11 @@ interface TransformersApi {
     @GET("api/factions/{id}")
     suspend fun readOneFaction(@Path("id") id:String):FactionListItemResponse
 
-    @POST("api/")
-    suspend fun login(email:String, password:String)
+    @POST("api/auth/local")
+    suspend fun login(@Body login:LoginResponseBody):Response<AuthResponseBody>
 
-    @POST("api/users")
-    suspend fun register(name: String, surname: String, email: String, password: String)
+    @POST("api/auth/local/register")
+    suspend fun register(@Body register:RegisterResponseBody):Response<AuthResponseBody>
 
     suspend fun logout()
 }

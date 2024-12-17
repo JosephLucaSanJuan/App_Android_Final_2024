@@ -8,15 +8,19 @@ class DefaultUserRepository @Inject constructor(
     private val localDataSource: UsersLocalDataSource,
     private val remoteDataSource: UserRemoteDataSource
 ):UserRepository {
-    override suspend fun login(email: String, password: String) {
-        localDataSource.login(email, password)
+    override suspend fun login(email: String, password: String):Result<User> {
+        val result = remoteDataSource.login(email, password)
+        if (result.isSuccess) {
+            localDataSource.saveUser(result.getOrNull()!!)
+        }
+        return result
     }
 
-    override suspend fun register(name: String, surname: String, email: String, password: String) {
-        remoteDataSource.register(name, surname, email, password)
+    override suspend fun register(name: String, surname: String, email: String, password: String):Result<User> {
+        return remoteDataSource.register(name, surname, email, password)
     }
 
     override suspend fun logout() {
-        remoteDataSource.logout()
+        localDataSource.logout()
     }
 }
