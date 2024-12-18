@@ -23,11 +23,7 @@ class FactionFragment : Fragment() {
     private val viewModel: FactionViewModel by viewModels()
     private lateinit var binding: FragmentFactionBinding
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
 
-        // TODO: Use the ViewModel
-    }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -46,8 +42,8 @@ class FactionFragment : Fragment() {
             repeatOnLifecycle(Lifecycle.State.STARTED) {
                 viewModel.uiState.collect {
                     uiState -> when(uiState) {
-                        is FactionListUiState.Error -> TODO()
-                        is FactionListUiState.Loading -> TODO()
+                        is FactionListUiState.Error -> {}
+                        is FactionListUiState.Loading -> {}
                         is FactionListUiState.Success -> {
                             (recyclerView.adapter as FactionListAdapter).submitList(viewModel.read())
                         }

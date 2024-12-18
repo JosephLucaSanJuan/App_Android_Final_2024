@@ -43,26 +43,26 @@ class LoginFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        /*viewLifecycleOwner.lifecycleScope.launch {
+        viewLifecycleOwner.lifecycleScope.launch {
             repeatOnLifecycle(Lifecycle.State.STARTED) {
                 viewModel.uiState.collect {
                     uiState -> when(uiState) {
-                        is LoginListUiState.InitialState -> TODO()
-                        is LoginListUiState.Error -> TODO()
-                        is LoginListUiState.LoggingIn -> TODO()
+                        is LoginListUiState.InitialState -> {}
+                        is LoginListUiState.Error -> {}
+                        is LoginListUiState.LoggingIn -> {}
                         is LoginListUiState.LoggedIn -> {
+                            val action = LoginFragmentDirections.actionLoginFragmentToFactionFragment()
+                            view.findNavController().navigate(action)/**/
                         }
                     }
                 }
             }
-        }*/
+        }/**/
         binding.loginToRegister.setOnClickListener {
             val action = LoginFragmentDirections.actionLoginFragmentToRegisterFragment()
             view.findNavController().navigate(action)
         }
         binding.loginButton.setOnClickListener {
-            /*val action = LoginFragmentDirections.actionLoginFragmentToFactionFragment()
-            view.findNavController().navigate(action)*/
             val email = binding.emailInput.text.toString()
             val password = binding.passwordInput.text.toString()
             viewModel.onLogin(email, password)
