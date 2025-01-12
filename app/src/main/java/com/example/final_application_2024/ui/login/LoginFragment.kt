@@ -1,5 +1,6 @@
 package com.example.final_application_2024.ui.login
 
+import android.content.Intent
 import androidx.fragment.app.viewModels
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -11,6 +12,7 @@ import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.findNavController
 import com.example.final_application_2024.databinding.FragmentLoginBinding
+import com.example.final_application_2024.ui.MainActivity
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
@@ -51,8 +53,10 @@ class LoginFragment : Fragment() {
                         is LoginListUiState.Error -> {}
                         is LoginListUiState.LoggingIn -> {}
                         is LoginListUiState.LoggedIn -> {
-                            val action = LoginFragmentDirections.actionLoginFragmentToFactionFragment()
-                            view.findNavController().navigate(action)/**/
+                            /*val action = LoginFragmentDirections.actionLoginFragmentToFactionFragment()
+                            view.findNavController().navigate(action)*/
+                            toMain()
+                            requireActivity().finish()
                         }
                     }
                 }
@@ -68,5 +72,26 @@ class LoginFragment : Fragment() {
             viewModel.onLogin(email, password)
         }
     }
+
+    private fun toMain() = startActivity(Intent(requireContext(), MainActivity::class.java))
+    /*private fun setProgress(isVisible:Boolean) {
+        binding.loginProgressIndicator.isVisible = isVisible
+    }
+    private fun hideProgress() = setProgress(false)
+    private fun showProgress() = setProgress(true)
+    private fun setInputState(enable:Boolean) {
+        binding.emailInput.isEnabled = enable
+        binding.passwordInput.isEnabled = enable
+        binding.loginButton.isEnabled = enable
+    }
+    private fun disableInput() = setInputState(false)
+    private fun enableInput() = setInputState(true)
+    private fun setError(message:String?=null) {
+        binding.userPassword.error = message
+        binding.userEmail.error = message
+    }
+    private fun showError(message:String) = setError(message)
+
+    private fun hideError() = setError()*/
 
 }
