@@ -7,6 +7,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.view.isVisible
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
@@ -55,6 +56,9 @@ class LoginFragment : Fragment() {
                         is LoginListUiState.LoggedIn -> {
                             /*val action = LoginFragmentDirections.actionLoginFragmentToFactionFragment()
                             view.findNavController().navigate(action)*/
+                            hideProgress()
+                            hideError()
+                            disableInput()
                             toMain()
                             requireActivity().finish()
                         }
@@ -74,8 +78,8 @@ class LoginFragment : Fragment() {
     }
 
     private fun toMain() = startActivity(Intent(requireContext(), MainActivity::class.java))
-    /*private fun setProgress(isVisible:Boolean) {
-        binding.loginProgressIndicator.isVisible = isVisible
+    /**/private fun setProgress(isVisible:Boolean) {
+        binding.loginLoading.isVisible = isVisible
     }
     private fun hideProgress() = setProgress(false)
     private fun showProgress() = setProgress(true)
@@ -92,6 +96,6 @@ class LoginFragment : Fragment() {
     }
     private fun showError(message:String) = setError(message)
 
-    private fun hideError() = setError()*/
+    private fun hideError() = setError()
 
 }

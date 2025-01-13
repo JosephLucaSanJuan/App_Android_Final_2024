@@ -89,6 +89,21 @@ dependencies {
     // Navigation Fragment KTX
     implementation("androidx.navigation:navigation-fragment-ktx:2.8.4")
     implementation("androidx.navigation:navigation-ui-ktx:2.8.4")
+    
+    // CameraX
+    // The following line is optional, as the core library is included indirectly by camera-camera2
+    implementation("androidx.camera:camera-core:1.5.0-alpha04")
+    implementation("androidx.camera:camera-camera2:1.5.0-alpha04")
+    // If you want to additionally use the CameraX Lifecycle library
+    implementation("androidx.camera:camera-lifecycle:1.5.0-alpha04")
+    // If you want to additionally use the CameraX VideoCapture library
+    implementation("androidx.camera:camera-video:1.5.0-alpha04")
+    // If you want to additionally use the CameraX View class
+    implementation("androidx.camera:camera-view:1.5.0-alpha04")
+    // If you want to additionally add CameraX ML Kit Vision Integration
+    implementation("androidx.camera:camera-mlkit-vision:1.5.0-alpha04")
+    // If you want to additionally use the CameraX Extensions library
+    implementation("androidx.camera:camera-extensions:1.5.0-alpha04")
 }
 
 kapt {

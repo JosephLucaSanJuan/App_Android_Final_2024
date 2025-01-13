@@ -37,7 +37,7 @@ class LoginViewModel @Inject constructor(
 sealed class LoginListUiState {
     data object InitialState : LoginListUiState()
     data object LoggingIn : LoginListUiState()
-    class Error(message:String) : LoginListUiState()
+    data class Error(val message:String) : LoginListUiState()
     data object LoggedIn : LoginListUiState()
 }
 
