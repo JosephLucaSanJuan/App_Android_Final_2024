@@ -54,13 +54,13 @@ class LoginFragment : Fragment() {
                         is LoginListUiState.Error -> {}
                         is LoginListUiState.LoggingIn -> {}
                         is LoginListUiState.LoggedIn -> {
-                            /*val action = LoginFragmentDirections.actionLoginFragmentToFactionFragment()
-                            view.findNavController().navigate(action)*/
-                            hideProgress()
+                            val action = LoginFragmentDirections.actionLoginFragmentToFactionFragment()
+                            view.findNavController().navigate(action)
+                            /*hideProgress()
                             hideError()
                             disableInput()
                             toMain()
-                            requireActivity().finish()
+                            requireActivity().finish()*/
                         }
                     }
                 }
