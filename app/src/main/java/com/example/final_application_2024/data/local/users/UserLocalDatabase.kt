@@ -9,7 +9,7 @@ class UserLocalDatabase @Inject constructor():UsersLocalDataSource {
         TODO("Not yet implemented")
     }
 
-    override suspend fun register(name: String, surname: String, email: String, password: String) {
+    override suspend fun register(username: String, email: String, password: String) {
         TODO("Not yet implemented")
     }
 

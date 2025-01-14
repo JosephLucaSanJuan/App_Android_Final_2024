@@ -16,8 +16,8 @@ class DefaultUserRepository @Inject constructor(
         return result
     }
 
-    override suspend fun register(name: String, surname: String, email: String, password: String):Result<User> {
-        return remoteDataSource.register(name, surname, email, password)
+    override suspend fun register(username: String, email: String, password: String):Result<User> {
+        return remoteDataSource.register(username, email, password)
     }
 
     override suspend fun logout() {

@@ -46,7 +46,7 @@ class RegisterFragment : Fragment() {
             val surname = binding.surnameInput.text.toString()
             val email = binding.emailInput.text.toString()
             val password = binding.passwordInput.text.toString()
-            viewModel.onRegister(name, surname, email, password)
+            viewModel.onRegister(name + " " + surname, email, password)
         }
         viewLifecycleOwner.lifecycleScope.launch {
             repeatOnLifecycle(Lifecycle.State.STARTED) {
@@ -62,10 +62,8 @@ class RegisterFragment : Fragment() {
                         }
                         is RegisterListUiState.Loading -> {}
                         is RegisterListUiState.Registered -> {
-                            binding.registerButton.setOnClickListener {
-                                val action = RegisterFragmentDirections.actionRegisterFragmentToFactionFragment()
-                                view.findNavController().navigate(action)
-                            }
+                            val action = RegisterFragmentDirections.actionRegisterFragmentToFactionFragment()
+                            view.findNavController().navigate(action)
                         }
                     }
                 }

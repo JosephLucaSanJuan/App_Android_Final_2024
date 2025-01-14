@@ -19,11 +19,11 @@ class RegisterViewModel @Inject constructor(
     val uiState: StateFlow<RegisterListUiState>
         get() = _uiState.asStateFlow()
 
-    fun onRegister(name:String, surname:String, email:String, password:String) {
+    fun onRegister(username:String, email:String, password:String) {
         viewModelScope.launch {
             _uiState.value = RegisterListUiState.Loading
 
-            val result = userRepository.register(name, surname, email, password)
+            val result = userRepository.register(username, email, password)
             if (result.isSuccess) {
                 _uiState.value = RegisterListUiState.Registered
             } else {

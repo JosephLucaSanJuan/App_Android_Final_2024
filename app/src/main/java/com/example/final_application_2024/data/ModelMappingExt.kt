@@ -44,10 +44,10 @@ fun FactionListItemResponse.toExternal(): Faction {
 fun AuthResponseBody.toUser(): User {
     return User(
         id = this.user.id,
-        name = this.user.username,
+        username = this.user.username,
         //surname = this.user.surname,
         email = this.user.email,
-        //password = this.user.password,
+        password = this.user.password,
         token = this.jwt
     )
 }

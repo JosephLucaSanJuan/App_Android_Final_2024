@@ -39,12 +39,11 @@ data class AuthResponseUser(
     val username:String,
     //val surname:String,
     val email:String,
-    //val password:String
+    val password:String
 )
 
 data class RegisterResponseBody(
-    val name:String,
-    val surname:String,
+    val username:String,
     val email:String,
     val password:String
 )
