@@ -10,6 +10,7 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.findNavController
+import androidx.navigation.fragment.findNavController
 import com.example.final_application_2024.databinding.FragmentRegisterBinding
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
@@ -64,6 +65,7 @@ class RegisterFragment : Fragment() {
                         is RegisterListUiState.Registered -> {
                             val action = RegisterFragmentDirections.actionRegisterFragmentToFactionFragment()
                             view.findNavController().navigate(action)
+                            //findNavController().popBackStack()
                         }
                     }
                 }
