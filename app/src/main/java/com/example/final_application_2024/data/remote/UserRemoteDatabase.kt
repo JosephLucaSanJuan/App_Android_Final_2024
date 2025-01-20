@@ -13,12 +13,12 @@ class UserRemoteDatabase @Inject constructor(
 
     override suspend fun login(email: String, password: String): Result<User> {
         val response = api.login(LoginResponseBody(email, password))
-        /*return if (response.isSuccessful) {
+        return if (response.isSuccessful) {
             Result.success(response.body()!!.toUser())
         } else {
             Result.failure(UserNotAuthenticatedException())
-        }*/
-        val user = getUser(email)
+        }
+        /*val user = getUser(email, password)
         user?.let {
             if (it.password == password) {
                 val token = UUID.randomUUID()
@@ -29,7 +29,7 @@ class UserRemoteDatabase @Inject constructor(
                 return Result.failure(UserNotAuthenticatedException())
             }
         }
-        return Result.failure(UserNotAuthenticatedException())
+        return Result.failure(UserNotAuthenticatedException())*/
     }
 
     override suspend fun register(
@@ -51,8 +51,8 @@ class UserRemoteDatabase @Inject constructor(
 
     private fun userExists(username: String, email: String) = getUser(username, email)==null
 
-    private fun getUser(username: String, email: String) = _users.find {
-            u -> (u.username == username || u.email == email)
+    private fun getUser(email: String, password: String) = _users.find {
+            u -> (u.password == password || u.email == email)
     }
 
     private fun getUser(identifier: String) = _users.find {
