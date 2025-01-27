@@ -5,7 +5,7 @@ data class User(
     val username:String,
     //val surname:String = "",
     val email:String,
-    val password:String,
+    //val password:String,
     var token:String
 ) {
     val isLoggedIn:Boolean

@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
+import androidx.navigation.findNavController
 import com.example.final_application_2024.databinding.FragmentFactionBinding
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
@@ -50,6 +51,10 @@ class FactionFragment : Fragment() {
                     }
                 }
             }
+        }
+        binding.createFaction.setOnClickListener {
+            val action = FactionFragmentDirections.actionFactionFragmentToCreateFactionFragment()
+            view.findNavController().navigate(action)
         }
     }
 

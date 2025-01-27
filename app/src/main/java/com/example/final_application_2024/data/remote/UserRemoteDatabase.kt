@@ -49,7 +49,7 @@ class UserRemoteDatabase @Inject constructor(
         TODO("Not yet implemented")
     }
 
-    private fun userExists(username: String, email: String) = getUser(username, email)==null
+    /*private fun userExists(username: String, email: String) = getUser(username, email)==null
 
     private fun getUser(email: String, password: String) = _users.find {
             u -> (u.password == password || u.email == email)
@@ -57,5 +57,5 @@ class UserRemoteDatabase @Inject constructor(
 
     private fun getUser(identifier: String) = _users.find {
             u -> (u.username == identifier || u.email == identifier)
-    }
+    }*/
 }
