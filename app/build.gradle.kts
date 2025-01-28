@@ -56,17 +56,22 @@ dependencies {
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
+
     // Fragments
     implementation("androidx.fragment:fragment:1.8.5")
     implementation("androidx.fragment:fragment-ktx:1.8.5")
+
     // DataStore
     implementation("androidx.datastore:datastore:1.1.1")
+
     // DaggerHilt
     implementation("com.google.dagger:hilt-android:2.51.1")
     kapt("com.google.dagger:hilt-android-compiler:2.51.1")
+
     // Retrofit
     implementation("com.squareup.retrofit2:retrofit:2.11.0")
     implementation("com.squareup.retrofit2:converter-gson:2.11.0")
+
     // Room
     implementation("androidx.room:room-runtime:2.6.1")
     annotationProcessor("androidx.room:room-compiler:2.6.1")
@@ -78,14 +83,11 @@ dependencies {
     // Navigation
     // Jetpack Compose integration
     implementation("androidx.navigation:navigation-compose:2.8.4")
-
     // Views/Fragments integration
     implementation("androidx.navigation:navigation-fragment:2.8.4")
     implementation("androidx.navigation:navigation-ui:2.8.4")
-
     // Feature module support for Fragments
     implementation("androidx.navigation:navigation-dynamic-features-fragment:2.8.4")
-
     // Testing Navigation
     androidTestImplementation("androidx.navigation:navigation-testing:2.8.4")
     // Navigation Fragment KTX
@@ -109,6 +111,20 @@ dependencies {
 
     // Maps SDK for Android
     implementation("com.google.android.gms:play-services-maps:19.0.0")
+
+    // WorkManager
+    // (Java only)
+    implementation("androidx.work:work-runtime:2.10.0")
+    // Kotlin + coroutines
+    implementation("androidx.work:work-runtime-ktx:2.10.0")
+    // optional - RxJava2 support
+    implementation("androidx.work:work-rxjava2:2.10.0")
+    // optional - GCMNetworkManager support
+    implementation("androidx.work:work-gcm:2.10.0")
+    // optional - Test helpers
+    androidTestImplementation("androidx.work:work-testing:2.10.0")
+    // optional - Multiprocess support
+    implementation("androidx.work:work-multiprocess:2.10.0")
 }
 
 kapt {
