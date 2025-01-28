@@ -8,36 +8,45 @@ import com.example.final_application_2024.data.remote.RegisterResponseBody
 import com.example.final_application_2024.data.remote.TransformersListItemResponse
 import com.example.final_application_2024.data.remote.TransformersListResponse
 
-fun TransformersListResponse.toExternal() = results.map(TransformersListItemResponse::toExternal)
+fun TransformersListResponse.toExternal() = data.map(TransformersListItemResponse::toExternal)
 
 fun TransformersListItemResponse.toExternal(): Transformer {
     return Transformer(
         id = this.id,
-        name = this.name,
-        alternateMode = this.altMode,
-        gender = this.gender
+        name = this.attributes.name,
+        alternateMode = this.attributes.altMode,
+        gender = this.attributes.gender
     )
 }
 
 fun TransformersListResponse.toLocal():List<Transformer> {
-    return results.map { p -> p.toLocal() }
+    return data.map { p -> p.toLocal() }
 }
 
 fun TransformersListItemResponse.toLocal(): Transformer {
     return Transformer(
         id = this.id,
-        name = this.name,
-        alternateMode = this.altMode,
-        gender = this.gender
+        name = this.attributes.name,
+        alternateMode = this.attributes.altMode,
+        gender = this.attributes.gender
     )
 }
 
-fun FactionListResponse.toExternal() = results.map(FactionListItemResponse::toExternal)
+fun FactionListResponse.toExternal() = data.map(FactionListItemResponse::toExternal)
 
 fun FactionListItemResponse.toExternal(): Faction {
     return Faction(
         id = this.id,
-        name = this.name
+        name = this.attributes.name
+    )
+}
+
+fun FactionListResponse.toLocal() = data.map(FactionListItemResponse::toLocal)
+
+fun FactionListItemResponse.toLocal(): Faction {
+    return Faction(
+        id = this.id,
+        name = this.attributes.name
     )
 }
 

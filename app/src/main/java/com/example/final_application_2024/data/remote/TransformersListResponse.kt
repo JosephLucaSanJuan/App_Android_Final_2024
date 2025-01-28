@@ -1,26 +1,36 @@
 package com.example.final_application_2024.data.remote
 
 data class TransformersListResponse(
-    val count:Int,
-    val next:String,
-    val results:List<TransformersListItemResponse>
+    /*val count:Int,
+    val next:String,*/
+    val data:List<TransformersListItemResponse>
 )
 
 data class TransformersListItemResponse(
     val id:Int,
+    val attributes:TransformerAttributes
+)
+
+data class TransformerAttributes(
     val name:String,
     val altMode:String,
     val gender:String
 )
 
 data class FactionListResponse(
+    val data: List<FactionListItemResponse>
+    /*
     val count:Int,
     val next:String,
-    val results:List<FactionListItemResponse>
+    val results:List<FactionListItemResponse>*/
 )
 
 data class FactionListItemResponse(
     val id:Int,
+    val attributes:FactionAttributes
+)
+
+data class FactionAttributes(
     val name:String
 )
 
