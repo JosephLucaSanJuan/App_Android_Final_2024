@@ -46,15 +46,24 @@ class CreateFactionFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         viewLifecycleOwner.lifecycleScope.launch {
             repeatOnLifecycle(Lifecycle.State.STARTED) {
-                viewModel.uiState.collect {}
+                viewModel.uiState.collect {
+                    uiState -> when(uiState) {
+                        is CreateFactionListUiState.InitialState -> {}
+                        is CreateFactionListUiState.Error -> {}
+                        is CreateFactionListUiState.Loading -> {}
+                        is CreateFactionListUiState.Registered -> {
+                            val action = CreateFactionFragmentDirections.actionCreateFactionFragmentToFactionFragment()
+                            view.findNavController().navigate(action)
+                        }
+                }
+                }
             }
         }
         binding.saveFaction.setOnClickListener {
-            val action = CreateFactionFragmentDirections.actionCreateFactionFragmentToFactionFragment()
+
             viewModel.createFaction(
                 binding.nameInput.text.toString()
             )
-            view.findNavController().navigate(action)
         }
     }
 }
