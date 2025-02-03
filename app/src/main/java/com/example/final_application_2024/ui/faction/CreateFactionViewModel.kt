@@ -21,17 +21,17 @@ class CreateFactionViewModel @Inject constructor(
         get() = _uiState.asStateFlow()
 
     fun createFaction(name:String) {
-        val newFaction = Faction(0, name)
+        //val newFaction = Faction(0, name)
         viewModelScope.launch {
             _uiState.value = CreateFactionListUiState.Loading
-            val result = repository.create(newFaction)
-            /*if (result.isSuccess) {
+            val result = repository.create(name)
+            if (result.isSuccess) {
                 _uiState.value = CreateFactionListUiState.Registered
             } else {
                 result.exceptionOrNull()?.let {
                     _uiState.value = CreateFactionListUiState.Error(it.toString())
                 }
-            }*/
+            }/**/
         }
     }
 }

@@ -3,15 +3,23 @@ package com.example.final_application_2024.data.remote
 import com.example.final_application_2024.data.Faction
 import com.example.final_application_2024.data.Transformer
 import com.example.final_application_2024.data.local.factions.FactionDao
+import com.example.final_application_2024.data.local.factions.FactionEntity
 import com.example.final_application_2024.data.toExternal
+import com.example.final_application_2024.data.toLocal
+import com.example.final_application_2024.exceptions.FactionDataNotProperlyReceived
 import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 
 class FactionsRemoteDatabase @Inject constructor(
     private val api: TransformersApi
 ):FactionsRemoteDataSource {
-    override suspend fun create(faction: Faction) {
-        api.createFaction(faction)
+    override suspend fun create(name: String):Result<Faction> {
+        val response = api.createFaction(FactionListItemResponse(0, FactionAttributes(name)))
+        return if (response.isSuccessful) {
+            Result.success(response.body()!!.toLocal())
+        } else {
+            Result.failure(FactionDataNotProperlyReceived())
+        }
     }
 
     override suspend fun update(id: String, faction: Faction) {

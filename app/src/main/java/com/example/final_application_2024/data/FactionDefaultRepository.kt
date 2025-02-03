@@ -9,8 +9,8 @@ class FactionDefaultRepository @Inject constructor(
     private val localDataSource: FactionsLocalDataSource,
     private val remoteDataSource: FactionsRemoteDataSource
 ):FactionRepository {
-    override suspend fun create(faction: Faction) {
-        localDataSource.create(faction)
+    override suspend fun create(name: String): Result<Faction> {
+        return remoteDataSource.create(name)
     }
 
     override suspend fun update(faction: Faction) {

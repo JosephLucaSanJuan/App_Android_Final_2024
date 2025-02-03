@@ -12,7 +12,7 @@ import retrofit2.http.Path
 
 interface TransformersApi {
     @POST("api/transformers")
-    suspend fun createTransformer(@Body transformer:Transformer)//:TransformersListResponse
+    suspend fun createTransformer(@Body transformer:Transformer)//:Response<TransformersListItemResponse>
 
     @PUT("api/transformers")
     suspend fun updateTransformer(@Body transformer:Transformer):TransformersListResponse
@@ -27,7 +27,7 @@ interface TransformersApi {
     suspend fun readOneTransformer(@Path("id") id:Int):TransformersListItemResponse
 
     @POST("api/factions")
-    suspend fun createFaction(@Body faction:Faction)
+    suspend fun createFaction(@Body faction:FactionListItemResponse):Response<FactionListItemResponse>
 
     @PUT("api/factions/{id}")
     suspend fun updateFaction(@Path("id") id:String, @Body faction:Faction):FactionListResponse
