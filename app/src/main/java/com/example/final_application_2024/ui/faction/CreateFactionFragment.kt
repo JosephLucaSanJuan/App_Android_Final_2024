@@ -35,11 +35,12 @@ class CreateFactionFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        return FragmentCreateFactionBinding.inflate(
+        binding = FragmentCreateFactionBinding.inflate(
             inflater,
             container,
             false
-        ).root
+        )
+        return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

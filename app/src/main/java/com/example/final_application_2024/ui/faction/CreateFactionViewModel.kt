@@ -25,6 +25,13 @@ class CreateFactionViewModel @Inject constructor(
         viewModelScope.launch {
             _uiState.value = CreateFactionListUiState.Loading
             val result = repository.create(newFaction)
+            /*if (result.isSuccess) {
+                _uiState.value = CreateFactionListUiState.Registered
+            } else {
+                result.exceptionOrNull()?.let {
+                    _uiState.value = CreateFactionListUiState.Error(it.toString())
+                }
+            }*/
         }
     }
 }
@@ -32,7 +39,7 @@ class CreateFactionViewModel @Inject constructor(
 sealed class CreateFactionListUiState {
     data object InitialState : CreateFactionListUiState()
     data object Loading : CreateFactionListUiState()
-    class Error(message:String) : CreateFactionListUiState()
+    data class Error(val message:String) : CreateFactionListUiState()
     data object Registered : CreateFactionListUiState()
 }
 
