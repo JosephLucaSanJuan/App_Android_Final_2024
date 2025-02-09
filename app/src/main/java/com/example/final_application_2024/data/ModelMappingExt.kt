@@ -2,6 +2,7 @@ package com.example.final_application_2024.data
 
 import com.example.final_application_2024.data.remote.AuthResponseBody
 import com.example.final_application_2024.data.remote.AuthResponseUser
+import com.example.final_application_2024.data.remote.FactionCreateWrapper
 import com.example.final_application_2024.data.remote.FactionListItemResponse
 import com.example.final_application_2024.data.remote.FactionListResponse
 import com.example.final_application_2024.data.remote.RegisterResponseBody
@@ -47,6 +48,13 @@ fun FactionListItemResponse.toLocal(): Faction {
     return Faction(
         id = this.id,
         name = this.attributes.name
+    )
+}
+
+fun FactionCreateWrapper.toLocal(): Faction {
+    return Faction(
+        id = this.data.id,
+        name = this.data.attributes.name
     )
 }
 

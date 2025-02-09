@@ -27,7 +27,7 @@ interface TransformersApi {
     suspend fun readOneTransformer(@Path("id") id:Int):TransformersListItemResponse
 
     @POST("api/factions")
-    suspend fun createFaction(@Body faction:FactionListItemResponse):Response<FactionListItemResponse>
+    suspend fun createFaction(@Body faction:FactionCreatePayloadWrapper):Response<FactionCreateWrapper>
 
     @PUT("api/factions/{id}")
     suspend fun updateFaction(@Path("id") id:String, @Body faction:Faction):FactionListResponse

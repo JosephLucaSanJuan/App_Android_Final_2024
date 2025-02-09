@@ -24,6 +24,9 @@ data class FactionListResponse(
     val next:String,
     val results:List<FactionListItemResponse>*/
 )
+data class FactionCreateWrapper(
+    val data: FactionListItemResponse
+)
 
 data class FactionListItemResponse(
     val id:Int,

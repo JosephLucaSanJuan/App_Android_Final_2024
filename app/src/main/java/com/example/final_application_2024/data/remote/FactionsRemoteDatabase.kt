@@ -9,12 +9,18 @@ import com.example.final_application_2024.data.toLocal
 import com.example.final_application_2024.exceptions.FactionDataNotProperlyReceived
 import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
+data class FactionCreatePayloadWrapper(
+    val data: FactionCreatePayload
+)
 
+data class FactionCreatePayload(
+    val name: String
+)
 class FactionsRemoteDatabase @Inject constructor(
     private val api: TransformersApi
 ):FactionsRemoteDataSource {
     override suspend fun create(name: String):Result<Faction> {
-        val response = api.createFaction(FactionListItemResponse(0, FactionAttributes(name)))
+        val response = api.createFaction(FactionCreatePayloadWrapper(FactionCreatePayload(name)))
         return if (response.isSuccessful) {
             Result.success(response.body()!!.toLocal())
         } else {
