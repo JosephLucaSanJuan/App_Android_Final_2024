@@ -26,7 +26,7 @@ class FactionViewModel @Inject constructor(
     init {
         viewModelScope.launch {
             repository.observeAll().collect { faction ->
-                _uiState.value = FactionListUiState.Success(faction)
+                _uiState.value = FactionListUiState.Success(faction.getOrNull()!!)
             }
         }
     }
@@ -35,7 +35,7 @@ class FactionViewModel @Inject constructor(
 sealed class FactionListUiState {
     data object Loading: FactionListUiState()
     data class Error(val message:String):FactionListUiState()
-    data class Success(val faction: Result<List<Faction>>): FactionListUiState()
+    data class Success(val faction: List<Faction>): FactionListUiState()
 }
 
 data class FactionUiState(

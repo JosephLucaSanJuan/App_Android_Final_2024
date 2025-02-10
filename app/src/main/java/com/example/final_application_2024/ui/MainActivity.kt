@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.navigation.fragment.NavHostFragment
+import androidx.navigation.ui.setupWithNavController
 import com.example.final_application_2024.R
 import com.example.final_application_2024.databinding.ActivityMainBinding
 import dagger.hilt.android.AndroidEntryPoint
@@ -26,5 +27,6 @@ class MainActivity : AppCompatActivity() {
         val navHostFragment =
         supportFragmentManager.findFragmentById(R.id.main_navigation_host) as NavHostFragment
         val navController = navHostFragment.navController/***/
+        binding.mainBottomNav.setupWithNavController(navController)
     }
 }

@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.view.isVisible
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
@@ -54,18 +55,26 @@ class RegisterFragment : Fragment() {
                 viewModel.uiState.collect {
                     uiState -> when(uiState) {
                         is RegisterListUiState.InitialState -> {
-                            /*hideError()
-                            enableInput()*/
+                            hideProgress()
+                            hideError()
+                            enableInput()/**/
                         }
                         is RegisterListUiState.Error -> {
-                            /*enableInput()
-                            showError(uiState.message)*/
+                            hideProgress()
+                            enableInput()
+                            showError(uiState.message)/**/
                         }
-                        is RegisterListUiState.Loading -> {}
+                        is RegisterListUiState.Loading -> {
+                            hideProgress()
+                            disableInput()
+                            hideError()
+                        }
                         is RegisterListUiState.Registered -> {
-                            val action = RegisterFragmentDirections.actionRegisterFragmentToFactionFragment()
-                            view.findNavController().navigate(action)
-                            //findNavController().popBackStack()
+                            /*val action = RegisterFragmentDirections.actionRegisterFragmentToFactionFragment()
+                            view.findNavController().navigate(action)*/
+                            hideProgress()
+                            hideError()
+                            findNavController().popBackStack()
                         }
                     }
                 }
@@ -77,6 +86,8 @@ class RegisterFragment : Fragment() {
         }
     }
 
+    private fun hideProgress() { binding.registerLoading.isVisible = false }
+    private fun showProgress() { binding.registerLoading.isVisible = true }
     private fun disableInput() {
         binding.registerButton.isEnabled = false
         binding.nameInput.isEnabled = false

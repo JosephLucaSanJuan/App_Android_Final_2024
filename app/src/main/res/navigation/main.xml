@@ -3,9 +3,10 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
-    app:startDestination="@id/loginFragment">
+    app:startDestination="@id/home">
+    <include app:graph="@navigation/home"/>
 
-    <fragment
+    <!--fragment
         android:id="@+id/transformerListFragment"
         android:name="com.example.final_application_2024.ui.transformer.TransformerListFragment"
         android:label="fragment_transformer_list"
@@ -67,5 +68,5 @@
         <action
             android:id="@+id/action_createFactionFragment_to_factionFragment"
             app:destination="@id/factionFragment" />
-    </fragment>
+    </fragment-->
 </navigation>

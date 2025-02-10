@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/content"
+    app:startDestination="@id/factionFragment">
+
+    <fragment
+        android:id="@+id/factionFragment"
+        android:name="com.example.final_application_2024.ui.faction.FactionFragment"
+        android:label="fragment_faction"
+        tools:layout="@layout/fragment_faction" >
+        <action
+            android:id="@+id/action_factionFragment_to_createFactionFragment"
+            app:destination="@id/createFactionFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/createFactionFragment"
+        android:name="com.example.final_application_2024.ui.faction.CreateFactionFragment"
+        android:label="fragment_create_faction"
+        tools:layout="@layout/fragment_create_faction" >
+        <action
+            android:id="@+id/action_createFactionFragment_to_factionFragment"
+            app:destination="@id/factionFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/transformerListFragment"
+        android:name="com.example.final_application_2024.ui.transformer.TransformerListFragment"
+        android:label="fragment_transformer_list"
+        tools:layout="@layout/fragment_transformer_list" >
+        <action
+            android:id="@+id/action_transformerListFragment_to_createRobotFragment"
+            app:destination="@id/createRobotFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/createRobotFragment"
+        android:name="com.example.final_application_2024.ui.create_transformer.CreateRobotFragment"
+        android:label="fragment_create_robot"
+        tools:layout="@layout/fragment_create_robot" >
+        <action
+            android:id="@+id/action_createRobotFragment_to_transformerListFragment"
+            app:destination="@id/transformerListFragment" />
+    </fragment>
+</navigation>

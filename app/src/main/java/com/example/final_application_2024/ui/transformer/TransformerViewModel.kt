@@ -26,7 +26,7 @@ class TransformerViewModel @Inject constructor(
     init {
         viewModelScope.launch {
             repository.observeAll().collect { transformers ->
-                _uiState.value = TransformersListUiState.Success(transformers)
+                _uiState.value = TransformersListUiState.Success(transformers.getOrNull()!!)
             }
         }
     }
@@ -34,8 +34,8 @@ class TransformerViewModel @Inject constructor(
 
 sealed class TransformersListUiState {
     data object Loading: TransformersListUiState()
-    class Error(message:String):TransformersListUiState()
-    class Success(val transformers: List<Transformer>): TransformersListUiState()
+    data class Error(val message:String):TransformersListUiState()
+    data class Success(val transformers: List<Transformer>): TransformersListUiState()
 }
 
 data class TransformersUiState(

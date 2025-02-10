@@ -50,17 +50,29 @@ class LoginFragment : Fragment() {
             repeatOnLifecycle(Lifecycle.State.STARTED) {
                 viewModel.uiState.collect {
                     uiState -> when(uiState) {
-                        is LoginListUiState.InitialState -> {}
-                        is LoginListUiState.Error -> {}
-                        is LoginListUiState.LoggingIn -> {}
+                        is LoginListUiState.InitialState -> {
+                            hideProgress()
+                            enableInput()
+                            hideError()
+                        }
+                        is LoginListUiState.Error -> {
+                            hideProgress()
+                            enableInput()
+                            showError(uiState.message)
+                        }
+                        is LoginListUiState.LoggingIn -> {
+                            showProgress()
+                            disableInput()
+                            hideError()
+                        }
                         is LoginListUiState.LoggedIn -> {
-                            val action = LoginFragmentDirections.actionLoginFragmentToFactionFragment()
-                            view.findNavController().navigate(action)
-                            /*hideProgress()
+                            /*val action = LoginFragmentDirections.actionLoginFragmentToFactionFragment()
+                            view.findNavController().navigate(action)*/
+                            hideProgress()
                             hideError()
                             disableInput()
                             toMain()
-                            requireActivity().finish()*/
+                            requireActivity().finish()
                         }
                     }
                 }
