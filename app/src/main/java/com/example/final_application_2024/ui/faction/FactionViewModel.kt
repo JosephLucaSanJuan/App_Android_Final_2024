@@ -34,8 +34,8 @@ class FactionViewModel @Inject constructor(
 
 sealed class FactionListUiState {
     data object Loading: FactionListUiState()
-    class Error(message:String):FactionListUiState()
-    class Success(val faction: List<Faction>): FactionListUiState()
+    data class Error(val message:String):FactionListUiState()
+    data class Success(val faction: Result<List<Faction>>): FactionListUiState()
 }
 
 data class FactionUiState(

@@ -28,9 +28,10 @@ class FactionLocalDatabase @Inject constructor(
         return dao.readOne(id).toExternal()
     }
 
-    override fun observeAll(): Flow<List<Faction>> {
+    override fun observeAll(): Flow<Result<List<Faction>>> {
         return dao.observeAll().map { localFactions ->
-            localFactions.toExternal()
+            val factions = localFactions.toExternal()
+            Result.success(factions)
         }
     }
 }

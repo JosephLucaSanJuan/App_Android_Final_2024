@@ -8,5 +8,5 @@ interface TransformersRepository {
     suspend fun delete(transformer:Transformer)
     suspend fun readAll():List<Transformer>
     suspend fun readOne(id:Int):Transformer
-    fun observeAll():Flow<List<Transformer>>
+    fun observeAll():Flow<Result<List<Transformer>>>
 }

@@ -28,9 +28,10 @@ class TransformersLocalDatabase @Inject constructor(
         return (dao.readOne(id)).toExternal()
     }
 
-    override fun observeAll(): Flow<List<Transformer>> {
+    override fun observeAll(): Flow<Result<List<Transformer>>> {
         return dao.observeAll().map { localTransformers ->
-            localTransformers.toExternal()
+            val transformers = localTransformers.toExternal()
+            Result.success(transformers)
         }
     }
 }

@@ -29,7 +29,7 @@ class DefaultTransformersRepository @Inject constructor(
         return remoteDataSource.readOne(id)
     }
 
-    override fun observeAll(): Flow<List<Transformer>> {
+    override fun observeAll(): Flow<Result<List<Transformer>>> {
         return localDataSource.observeAll()
     }
 }

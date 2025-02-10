@@ -29,7 +29,7 @@ class FactionDefaultRepository @Inject constructor(
         return localDataSource.readOne(id)
     }
 
-    override fun observeAll(): Flow<List<Faction>> {
+    override fun observeAll(): Flow<Result<List<Faction>>> {
         return localDataSource.observeAll()
     }
 }
