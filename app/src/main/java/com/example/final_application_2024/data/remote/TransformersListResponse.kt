@@ -17,6 +17,20 @@ data class TransformerAttributes(
     val gender:String
 )
 
+data class TransformerCreatePayloadWrapper(
+    val data:TransformerCreatePayload
+)
+
+data class TransformerCreateWrapper(
+    val data: TransformersListItemResponse
+)
+
+data class TransformerCreatePayload(
+    val name:String,
+    val altMode:String,
+    val gender:String
+)
+
 data class FactionListResponse(
     val data: List<FactionListItemResponse>
     /*

@@ -5,6 +5,8 @@
     android:id="@+id/main"
     app:startDestination="@id/home">
     <include app:graph="@navigation/home"/>
+    <include app:graph="@navigation/content"/>
+    <include app:graph="@navigation/transformers"/>
 
     <!--fragment
         android:id="@+id/transformerListFragment"

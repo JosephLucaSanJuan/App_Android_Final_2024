@@ -9,8 +9,8 @@ class DefaultTransformersRepository @Inject constructor(
     private val localDataSource: TransformersLocalDataSource,
     private val remoteDataSource: TransformersRemoteDataSource
 ):TransformersRepository {
-    override suspend fun create(transformer: Transformer) {
-        localDataSource.create(transformer)
+    override suspend fun create(name:String, altMode:String, gender:String): Result<Transformer> {
+        return remoteDataSource.create(name, altMode, gender)
     }
 
     override suspend fun update(transformer: Transformer) {

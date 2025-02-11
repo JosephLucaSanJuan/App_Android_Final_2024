@@ -37,8 +37,8 @@ class TransformerListFragment : Fragment() {
             repeatOnLifecycle(Lifecycle.State.STARTED) {
                 viewModel.uiState.collect {
                     uiState -> when(uiState){
-                        is TransformersListUiState.Error -> TODO()
-                        is TransformersListUiState.Loading -> TODO()
+                        is TransformersListUiState.Error -> {}
+                        is TransformersListUiState.Loading -> {}
                         is TransformersListUiState.Success -> {
                             (recyclerView.adapter as TransformersListAdapter).submitList(viewModel.read())
                         }

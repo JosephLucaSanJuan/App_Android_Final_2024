@@ -23,7 +23,15 @@ class CreateRobotViewModel @Inject constructor(
     fun createRobot(name:String, altMode:String, gender:String) {
         val newTF = Transformer(0, name, altMode, gender)
         viewModelScope.launch {
-            repository.create(newTF)
+            _uiState.value = CreateRobotListUiState.Loading
+            val result = repository.create(name, altMode, gender)
+            if (result.isSuccess) {
+                _uiState.value = CreateRobotListUiState.Finished
+            } else {
+                result.exceptionOrNull()?.let {
+                    _uiState.value = CreateRobotListUiState.Error(it.toString())
+                }
+            }
         }
     }
 
@@ -32,7 +40,7 @@ class CreateRobotViewModel @Inject constructor(
 sealed class CreateRobotListUiState {
     data object InitialState : CreateRobotListUiState()
     data object Loading : CreateRobotListUiState()
-    class Error(message:String) : CreateRobotListUiState()
+    data class Error(val message:String) : CreateRobotListUiState()
     data object Finished : CreateRobotListUiState()
 }
 

@@ -3,14 +3,22 @@ package com.example.final_application_2024.data.remote
 import com.example.final_application_2024.data.Transformer
 import com.example.final_application_2024.data.toExternal
 import com.example.final_application_2024.data.toLocal
+import com.example.final_application_2024.exceptions.TransformerDataNotProperlyReceived
 import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 
 class TransformersNetworkDatabase @Inject constructor(
     private val api: TransformersApi
 ):TransformersRemoteDataSource {
-    override suspend fun create(transformer: Transformer) {
-        api.createTransformer(transformer)
+    override suspend fun create(name:String, altMode:String, gender:String): Result<Transformer> {
+        val response = api.createTransformer(TransformerCreatePayloadWrapper(
+            TransformerCreatePayload(name, altMode, gender)
+        ))
+        return if (response.isSuccessful) {
+            Result.success(response.body()!!.toLocal())
+        } else {
+            Result.failure(TransformerDataNotProperlyReceived())
+        }
     }
 
     override suspend fun update(transformer: Transformer) {

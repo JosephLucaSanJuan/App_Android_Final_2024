@@ -12,7 +12,7 @@ import retrofit2.http.Path
 
 interface TransformersApi {
     @POST("api/transformers")
-    suspend fun createTransformer(@Body transformer:Transformer)//:Response<TransformersListItemResponse>
+    suspend fun createTransformer(@Body transformer:TransformerCreatePayloadWrapper):Response<TransformerCreateWrapper>
 
     @PUT("api/transformers")
     suspend fun updateTransformer(@Body transformer:Transformer):TransformersListResponse

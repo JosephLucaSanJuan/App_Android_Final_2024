@@ -6,6 +6,7 @@ import com.example.final_application_2024.data.remote.FactionCreateWrapper
 import com.example.final_application_2024.data.remote.FactionListItemResponse
 import com.example.final_application_2024.data.remote.FactionListResponse
 import com.example.final_application_2024.data.remote.RegisterResponseBody
+import com.example.final_application_2024.data.remote.TransformerCreateWrapper
 import com.example.final_application_2024.data.remote.TransformersListItemResponse
 import com.example.final_application_2024.data.remote.TransformersListResponse
 
@@ -30,6 +31,15 @@ fun TransformersListItemResponse.toLocal(): Transformer {
         name = this.attributes.name,
         alternateMode = this.attributes.altMode,
         gender = this.attributes.gender
+    )
+}
+
+fun TransformerCreateWrapper.toLocal(): Transformer {
+    return Transformer(
+        id = this.data.id,
+        name = this.data.attributes.name,
+        alternateMode = this.data.attributes.altMode,
+        gender = this.data.attributes.gender
     )
 }
 
