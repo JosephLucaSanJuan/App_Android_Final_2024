@@ -14,6 +14,7 @@
             android:id="@+id/faction_name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:textAlignment="center"
             style="@style/TextAppearance.Material3.HeadlineMedium"/>
 
     </LinearLayout>
