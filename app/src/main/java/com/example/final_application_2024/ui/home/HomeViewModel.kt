@@ -31,6 +31,6 @@ class HomeViewModel @Inject constructor(
 sealed class HomeUiState {
     data object Loading: HomeUiState()
     data object LoggedOut: HomeUiState()
-    data object LoggedIn/*(val factions:Int, val transformers:Int)*/: HomeUiState()
+    data class LoggedIn(val factions:Int, val transformers:Int)/**/: HomeUiState()
     data class Error(val message:String): HomeUiState()
 }
