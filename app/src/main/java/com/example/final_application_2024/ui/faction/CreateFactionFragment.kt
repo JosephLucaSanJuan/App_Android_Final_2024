@@ -56,7 +56,7 @@ class CreateFactionFragment : Fragment() {
                             val action = CreateFactionFragmentDirections.actionCreateFactionFragmentToFactionFragment()
                             view.findNavController().navigate(action)
                         }
-                }
+                    }
                 }
             }
         }

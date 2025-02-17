@@ -19,6 +19,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:minHeight="?attr/actionBarSize"
+            app:title="Transformers"
+            app:titleCentered="true"
             app:menu="@menu/main_toolbar"/>
 
     </com.google.android.material.appbar.AppBarLayout>

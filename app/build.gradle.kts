@@ -59,6 +59,7 @@ dependencies {
     implementation("androidx.fragment:fragment-ktx:1.8.5")
     // DataStore
     implementation("androidx.datastore:datastore:1.1.1")
+    implementation("androidx.datastore:datastore-preferences-core:1.1.2")
     // DaggerHilt
     implementation("com.google.dagger:hilt-android:2.51.1")
     kapt("com.google.dagger:hilt-android-compiler:2.51.1")

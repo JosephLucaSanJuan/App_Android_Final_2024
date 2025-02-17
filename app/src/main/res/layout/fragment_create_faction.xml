@@ -42,7 +42,7 @@
         android:id="@+id/save_faction"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
+        android:layout_marginBottom="96dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="@+id/faction_name"
         android:text="Añadir Facción"/>

@@ -39,31 +39,28 @@ class CreateRobotFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         /*val adapter = TransformersListAdapter()
         val rv = binding.createRobot
-        rv.adapter = adapter
+        rv.adapter = adapter*/
         viewLifecycleOwner.lifecycleScope.launch {
             repeatOnLifecycle(Lifecycle.State.STARTED){
                 viewModel.uiState.collect {
                     uiState -> when(uiState) {
-                        is CreateRobotListUiState.Error -> TODO()
-                        is CreateRobotListUiState.InitialState -> TODO()
-                        is CreateRobotListUiState.Loading -> TODO()
+                        is CreateRobotListUiState.Error -> {}
+                        is CreateRobotListUiState.InitialState -> {}
+                        is CreateRobotListUiState.Loading -> {}
                         is CreateRobotListUiState.Finished -> {
-                            binding.saveTransformer.setOnClickListener {
-                                //
-                            }
+                            val action = CreateRobotFragmentDirections.actionCreateRobotFragmentToTransformerListFragment()
+                            view.findNavController().navigate(action)
                         }
                     }
                 }
             }
-        }*/
+        }
         binding.saveTransformer.setOnClickListener {
-            val action = CreateRobotFragmentDirections.actionCreateRobotFragmentToTransformerListFragment()
             viewModel.createRobot(
                 binding.nameInput.text.toString(),
                 binding.altModeInput.text.toString(),
                 binding.genderSelection.toString()
             )
-            view.findNavController().navigate(action)
         }
     }
 
