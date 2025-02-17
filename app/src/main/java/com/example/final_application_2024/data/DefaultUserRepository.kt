@@ -21,6 +21,6 @@ class DefaultUserRepository @Inject constructor(
     }
 
     override suspend fun logout() {
-        localDataSource.logout()
+        localDataSource.clearUser()
     }
 }

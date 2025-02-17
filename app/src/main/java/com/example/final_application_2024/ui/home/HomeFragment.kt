@@ -55,7 +55,7 @@ class HomeFragment : Fragment() {
                 else -> false
             }
         }
-        viewLifecycleOwner.lifecycleScope.launch {
+        /*viewLifecycleOwner.lifecycleScope.launch {
             repeatOnLifecycle(Lifecycle.State.STARTED) {
                 viewModel.uiState.collect{ uiState ->
                     when(uiState) {
@@ -73,6 +73,6 @@ class HomeFragment : Fragment() {
                     }
                 }
             }
-        }
+        }*/
     }
 }
