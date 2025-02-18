@@ -22,7 +22,7 @@ import javax.inject.Inject
 class FactionEditFragment @Inject constructor() : Fragment() {
     @Inject
     lateinit var repository:FactionRepository
-    //private val args: FactionEditFragmentArgs by navArgs()
+    private val args: FactionEditFragmentArgs by navArgs()
     private lateinit var binding: FragmentFactionEditBinding
     private val viewModel: CreateFactionViewModel by viewModels()
 
@@ -39,23 +39,23 @@ class FactionEditFragment @Inject constructor() : Fragment() {
         viewLifecycleOwner.lifecycleScope.launch {
             repeatOnLifecycle(Lifecycle.State.STARTED) {
                 viewModel.uiState.collect {
-                        uiState -> when(uiState) {
-                    is CreateFactionListUiState.InitialState -> {}
-                    is CreateFactionListUiState.Error -> {}
-                    is CreateFactionListUiState.Loading -> {}
-                    is CreateFactionListUiState.Registered -> {
-                        val action = CreateFactionFragmentDirections.actionCreateFactionFragmentToFactionFragment()
-                        view.findNavController().navigate(action)
+                    uiState -> when(uiState) {
+                        is CreateFactionListUiState.InitialState -> {}
+                        is CreateFactionListUiState.Error -> {}
+                        is CreateFactionListUiState.Loading -> {}
+                        is CreateFactionListUiState.Registered -> {
+                            val action = CreateFactionFragmentDirections.actionCreateFactionFragmentToFactionFragment()
+                            view.findNavController().navigate(action)
+                        }
                     }
-                }
                 }
             }
         }
-        binding.updateFaction.setOnClickListener {
-
-            viewModel.createFaction(
-                binding.nameInput.text.toString()
-            )
+        val id = args.Id
+        viewLifecycleOwner.lifecycleScope.launch {
+            binding.updateFaction.setOnClickListener {
+                viewModel.updateFaction(id)
+            }
         }
         binding.appBarButton.setNavigationOnClickListener {
             view.findNavController().popBackStack()

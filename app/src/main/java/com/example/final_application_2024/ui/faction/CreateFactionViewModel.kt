@@ -35,10 +35,11 @@ class CreateFactionViewModel @Inject constructor(
         }
     }
 
-    /*fun updateFaction(name:String) {
+    fun updateFaction(id:Int) {
         viewModelScope.launch {
+            val faction = repository.readOne(id)
             _uiState.value = CreateFactionListUiState.Loading
-            val result = repository.update(name)
+            val result = repository.update(faction)
             if (result.isSuccess) {
                 _uiState.value = CreateFactionListUiState.Registered
             } else {
@@ -47,7 +48,7 @@ class CreateFactionViewModel @Inject constructor(
                 }
             }/**/
         }
-    }*/
+    }/**/
 }
 
 sealed class CreateFactionListUiState {
