@@ -13,6 +13,9 @@
         <action
             android:id="@+id/action_factionFragment_to_createFactionFragment"
             app:destination="@id/createFactionFragment" />
+        <action
+            android:id="@+id/action_factionFragment_to_factionEditFragment"
+            app:destination="@id/factionEditFragment" />
     </fragment>
     <fragment
         android:id="@+id/createFactionFragment"
@@ -22,5 +25,17 @@
         <action
             android:id="@+id/action_createFactionFragment_to_factionFragment"
             app:destination="@id/factionFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/factionEditFragment"
+        android:name="com.example.final_application_2024.ui.faction.FactionEditFragment"
+        android:label="fragment_faction_edit"
+        tools:layout="@layout/fragment_faction_edit" >
+        <action
+            android:id="@+id/action_factionEditFragment_to_factionFragment"
+            app:destination="@id/factionFragment" />
+        <argument
+            android:name="Id"
+            app:argType="integer" />
     </fragment>
 </navigation>

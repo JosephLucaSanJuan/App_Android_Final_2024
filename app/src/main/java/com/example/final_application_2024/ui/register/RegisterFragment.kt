@@ -48,7 +48,7 @@ class RegisterFragment : Fragment() {
             val surname = binding.surnameInput.text.toString()
             val email = binding.emailInput.text.toString()
             val password = binding.passwordInput.text.toString()
-            viewModel.onRegister(name + " " + surname, email, password)
+            viewModel.onRegister(name, surname, name + " " + surname, email, password)
         }
         viewLifecycleOwner.lifecycleScope.launch {
             repeatOnLifecycle(Lifecycle.State.STARTED) {
@@ -65,7 +65,7 @@ class RegisterFragment : Fragment() {
                             showError(uiState.message)/**/
                         }
                         is RegisterListUiState.Loading -> {
-                            hideProgress()
+                            showProgress()
                             disableInput()
                             hideError()
                         }
@@ -98,8 +98,8 @@ class RegisterFragment : Fragment() {
     }
     private fun enableInput() {
         binding.registerButton.isEnabled = true
-        binding.nameInput.isEnabled = false
-        binding.surnameInput.isEnabled = false
+        binding.nameInput.isEnabled = true
+        binding.surnameInput.isEnabled = true
         binding.emailInput.isEnabled = true
         binding.passwordInput.isEnabled = true
         binding.confirmPassword.isEnabled = true

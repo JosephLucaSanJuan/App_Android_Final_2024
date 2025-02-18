@@ -33,11 +33,13 @@ class UserRemoteDatabase @Inject constructor(
     }
 
     override suspend fun register(
+        name: String,
+        surname: String,
         username: String,
         email: String,
         password: String
     ): Result<User> {
-        val response = api.register(RegisterResponseBody(username, email, password))
+        val response = api.register(RegisterResponseBody(name, surname, username, email, password))
         return if (response.isSuccessful) {
             Result.success(response.body()!!.toUser())
         } else {

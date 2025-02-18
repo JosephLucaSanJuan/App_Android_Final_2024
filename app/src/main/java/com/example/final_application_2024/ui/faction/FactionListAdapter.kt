@@ -8,12 +8,17 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.final_application_2024.data.Faction
 import com.example.final_application_2024.databinding.FactionListContentBinding
 
-class FactionListAdapter:ListAdapter<Faction, FactionListAdapter.FactionViewHolder>(FactionDiffCallback) {
+class FactionListAdapter(
+    private val toFactionEdit:(Int) -> Unit
+):ListAdapter<Faction, FactionListAdapter.FactionViewHolder>(FactionDiffCallback) {
     inner class FactionViewHolder(
         private val binding: FactionListContentBinding
     ):RecyclerView.ViewHolder(binding.root){
         fun bind(faction: Faction){
             binding.factionName.text = faction.name
+            binding.root.setOnClickListener {
+                toFactionEdit(faction.id)
+            }
         }
     }
     

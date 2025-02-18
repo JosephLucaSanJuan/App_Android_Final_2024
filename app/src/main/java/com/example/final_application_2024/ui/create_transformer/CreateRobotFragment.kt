@@ -59,8 +59,11 @@ class CreateRobotFragment : Fragment() {
             viewModel.createRobot(
                 binding.nameInput.text.toString(),
                 binding.altModeInput.text.toString(),
-                binding.genderSelection.toString()
+                binding.genderInput.text.toString()
             )
+        }
+        binding.appBarButton.setNavigationOnClickListener {
+            view.findNavController().popBackStack()
         }
     }
 

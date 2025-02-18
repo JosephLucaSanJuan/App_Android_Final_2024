@@ -5,7 +5,7 @@ import kotlinx.coroutines.flow.Flow
 
 interface FactionsRemoteDataSource {
     suspend fun create(name: String):Result<Faction>
-    suspend fun update(id: String, faction: Faction)
+    suspend fun update(id: String, faction: Faction): Result<Faction>
     suspend fun delete(id: String)
     suspend fun readAll():List<Faction>
     suspend fun readOne(id: String): Faction

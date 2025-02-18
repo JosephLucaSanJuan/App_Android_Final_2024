@@ -22,6 +22,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:title="Iniciar Sesión"
+        app:titleCentered="true"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"/>
 
@@ -61,10 +62,11 @@
         android:layout_height="wrap_content"
         style="@style/Widget.Material3.Button.TextButton"
         android:text="No tienes cuenta. Regístrate"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="@id/login_button"
         app:layout_constraintTop_toBottomOf="@id/login_button" />
+    <!--
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"-->
 
     <Button
         android:id="@+id/login_button"

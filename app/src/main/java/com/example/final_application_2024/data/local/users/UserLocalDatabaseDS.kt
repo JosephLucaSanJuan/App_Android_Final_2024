@@ -52,6 +52,8 @@ class UserLocalDatabaseDS @Inject constructor(
         token?.let {
             return User(
                 id = 0,
+                name = "",
+                surname = "",
                 username = "",
                 email = "",
                 token = token

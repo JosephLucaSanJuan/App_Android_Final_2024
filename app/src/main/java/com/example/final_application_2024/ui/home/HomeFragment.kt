@@ -55,15 +55,15 @@ class HomeFragment : Fragment() {
                 else -> false
             }
         }
-        /*viewLifecycleOwner.lifecycleScope.launch {
+        viewLifecycleOwner.lifecycleScope.launch {
             repeatOnLifecycle(Lifecycle.State.STARTED) {
                 viewModel.uiState.collect{ uiState ->
                     when(uiState) {
                         is HomeUiState.Loading -> {}
                         is HomeUiState.Error -> {}
                         is HomeUiState.LoggedIn -> {
-                            binding.factionCount.text = resources.getQuantityString(uiState.factions, uiState.factions)
-                            binding.transformerCount.text = resources.getQuantityString(uiState.transformers,uiState.transformers)
+                            //binding.factionCount.text = resources.getQuantityString(uiState.factions, uiState.factions)
+                            //binding.transformerCount.text = resources.getQuantityString(uiState.transformers,uiState.transformers)
                         }
                         is HomeUiState.LoggedOut -> {
                             val intent = Intent(requireContext(),LoginActivity::class.java)
@@ -73,6 +73,6 @@ class HomeFragment : Fragment() {
                     }
                 }
             }
-        }*/
+        }/**/
     }
 }

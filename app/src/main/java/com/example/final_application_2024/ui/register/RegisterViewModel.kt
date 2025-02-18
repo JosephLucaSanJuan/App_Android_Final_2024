@@ -15,15 +15,15 @@ import javax.inject.Inject
 class RegisterViewModel @Inject constructor(
     private val userRepository: UserRepository
 ) : ViewModel() {
-    private val _uiState = MutableStateFlow<RegisterListUiState>(RegisterListUiState.Loading)
+    private val _uiState = MutableStateFlow<RegisterListUiState>(RegisterListUiState.InitialState)
     val uiState: StateFlow<RegisterListUiState>
         get() = _uiState.asStateFlow()
 
-    fun onRegister(username:String, email:String, password:String) {
+    fun onRegister(name:String, surname:String, username:String, email:String, password:String) {
         viewModelScope.launch {
             _uiState.value = RegisterListUiState.Loading
 
-            val result = userRepository.register(username, email, password)
+            val result = userRepository.register(name, surname, username, email, password)
             if (result.isSuccess) {
                 _uiState.value = RegisterListUiState.Registered
             } else {

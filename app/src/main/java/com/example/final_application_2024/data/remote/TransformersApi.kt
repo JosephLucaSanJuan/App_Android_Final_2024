@@ -30,7 +30,7 @@ interface TransformersApi {
     suspend fun createFaction(@Body faction:FactionCreatePayloadWrapper):Response<FactionCreateWrapper>
 
     @PUT("api/factions/{id}")
-    suspend fun updateFaction(@Path("id") id:String, @Body faction:Faction):FactionListResponse
+    suspend fun updateFaction(@Path("id") id:String, @Body faction:Faction):Response<FactionListItemResponse>
 
     @DELETE("api/factions/{id}")
     suspend fun deleteFaction(@Path("id") id:String)

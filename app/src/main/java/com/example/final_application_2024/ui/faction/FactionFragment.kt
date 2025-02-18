@@ -10,6 +10,8 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.findNavController
+import androidx.navigation.fragment.findNavController
+import com.example.final_application_2024.data.Faction
 import com.example.final_application_2024.databinding.FragmentFactionBinding
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
@@ -38,7 +40,7 @@ class FactionFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         val recyclerView = binding.factionList
-        recyclerView.adapter = FactionListAdapter()
+        recyclerView.adapter = FactionListAdapter(::toFaction)
         viewLifecycleOwner.lifecycleScope.launch {
             repeatOnLifecycle(Lifecycle.State.STARTED) {
                 viewModel.uiState.collect {
@@ -56,6 +58,11 @@ class FactionFragment : Fragment() {
             val action = FactionFragmentDirections.actionFactionFragmentToCreateFactionFragment()
             view.findNavController().navigate(action)
         }
+    }
+
+    private fun toFaction(id: Int){
+        val action = FactionFragmentDirections.actionFactionFragmentToFactionEditFragment(id)
+        findNavController().navigate(action)
     }
 
 }

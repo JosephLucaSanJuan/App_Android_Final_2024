@@ -72,7 +72,8 @@ fun AuthResponseBody.toUser(): User {
     return User(
         id = this.user.id,
         username = this.user.username,
-        //surname = this.user.surname,
+        name = this.user.name,
+        surname = this.user.surname,
         email = this.user.email,
         //password = this.user.password,
         token = this.jwt

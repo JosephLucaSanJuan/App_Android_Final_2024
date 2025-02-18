@@ -28,8 +28,13 @@ class FactionsRemoteDatabase @Inject constructor(
         }
     }
 
-    override suspend fun update(id: String, faction: Faction) {
-        api.updateFaction(id, faction)
+    override suspend fun update(id: String, faction: Faction):Result<Faction> {
+        val response = api.updateFaction(id, faction)
+        return if (response.isSuccessful) {
+            Result.success(response.body()!!.toLocal())
+        } else {
+            Result.failure(FactionDataNotProperlyReceived())
+        }
     }
 
     override suspend fun delete(id: String) {

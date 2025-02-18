@@ -14,14 +14,22 @@
         android:layout_height="match_parent"
         tools:listitem="@layout/activity_create_robot" /-->
 
-    <com.google.android.material.appbar.MaterialToolbar
+    <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/create_robot_fav"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:title="Crear nuevo Transformer"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:navigationIcon="@drawable/arrow_back_24px"/>
+        app:layout_constraintStart_toStartOf="parent">
+
+        <com.google.android.material.appbar.MaterialToolbar
+            android:id="@+id/app_bar_button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:minHeight="?attr/actionBarSize"
+            app:title="Crear nuevo Transformer"
+            app:navigationIcon="@drawable/arrow_back_24px"/>
+
+    </com.google.android.material.appbar.AppBarLayout>
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/transformer_name"
@@ -62,6 +70,7 @@
         app:layout_constraintTop_toBottomOf="@id/transformer_altMode"
         app:layout_constraintStart_toStartOf="parent">
         <AutoCompleteTextView
+            android:id="@+id/gender_input"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:inputType="none"
@@ -72,7 +81,7 @@
         android:id="@+id/save_transformer"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="96dp"
+        android:layout_marginBottom="100dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="@+id/transformer_altMode"
         android:text="Añadir Transformer"/>
