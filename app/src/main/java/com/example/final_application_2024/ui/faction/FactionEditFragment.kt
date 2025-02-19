@@ -36,14 +36,17 @@ class FactionEditFragment @Inject constructor() : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        val id = args.Id
         viewLifecycleOwner.lifecycleScope.launch {
             repeatOnLifecycle(Lifecycle.State.STARTED) {
                 viewModel.uiState.collect {
                     uiState -> when(uiState) {
-                        is CreateFactionListUiState.InitialState -> {}
+                        is CreateFactionListUiState.InitialState -> {
+                            viewModel.getFaction(id)
+                        }
                         is CreateFactionListUiState.Error -> {}
                         is CreateFactionListUiState.Loading -> {}
-                        is CreateFactionListUiState.Registered -> {
+                        is CreateFactionListUiState.Finished -> {
                             val action = CreateFactionFragmentDirections.actionCreateFactionFragmentToFactionFragment()
                             view.findNavController().navigate(action)
                         }
@@ -51,11 +54,8 @@ class FactionEditFragment @Inject constructor() : Fragment() {
                 }
             }
         }
-        val id = args.Id
-        viewLifecycleOwner.lifecycleScope.launch {
-            binding.updateFaction.setOnClickListener {
-                viewModel.updateFaction(id)
-            }
+        binding.updateFaction.setOnClickListener {
+            viewModel.updateFaction(id)
         }
         binding.appBarButton.setNavigationOnClickListener {
             view.findNavController().popBackStack()

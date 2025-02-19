@@ -52,7 +52,7 @@ class CreateFactionFragment : Fragment() {
                         is CreateFactionListUiState.InitialState -> {}
                         is CreateFactionListUiState.Error -> {}
                         is CreateFactionListUiState.Loading -> {}
-                        is CreateFactionListUiState.Registered -> {
+                        is CreateFactionListUiState.Finished -> {
                             val action = CreateFactionFragmentDirections.actionCreateFactionFragmentToFactionFragment()
                             view.findNavController().navigate(action)
                         }
