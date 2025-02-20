@@ -39,14 +39,14 @@ class FactionEditFragment @Inject constructor() : Fragment() {
         val id = args.Id
         viewLifecycleOwner.lifecycleScope.launch {
             repeatOnLifecycle(Lifecycle.State.STARTED) {
-                viewModel.uiState.collect {
+                viewModel.uiState2.collect {
                     uiState -> when(uiState) {
-                        is CreateFactionListUiState.InitialState -> {
+                        is EditFactionUiState.InitialState -> {
                             viewModel.getFaction(id)
                         }
-                        is CreateFactionListUiState.Error -> {}
-                        is CreateFactionListUiState.Loading -> {}
-                        is CreateFactionListUiState.Finished -> {
+                        is EditFactionUiState.Error -> {}
+                        is EditFactionUiState.Loading -> {}
+                        is EditFactionUiState.Finished -> {
                             val action = CreateFactionFragmentDirections.actionCreateFactionFragmentToFactionFragment()
                             view.findNavController().navigate(action)
                         }
