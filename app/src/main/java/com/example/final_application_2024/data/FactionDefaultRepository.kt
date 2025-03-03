@@ -23,8 +23,8 @@ class FactionDefaultRepository @Inject constructor(
     override suspend fun update(faction: Faction): Result<Faction> {
         val result = remoteDataSource.update(faction.id.toString(), faction)
         if (result.isSuccess) {
-            val faction = result.getOrNull()
-            faction?.let {
+            //val faction = result.getOrNull()
+            faction.let {
                 localDataSource.update(faction)
             }
         }

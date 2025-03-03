@@ -46,6 +46,6 @@
         android:layout_marginBottom="100dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="@+id/faction_name"
-        android:text="Añadir Facción"/>
+        android:text="Actualizar Facción"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
