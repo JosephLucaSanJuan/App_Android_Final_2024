@@ -1,6 +1,7 @@
 package com.example.final_application_2024.data.local.factions
 
 import com.example.final_application_2024.data.Faction
+import com.example.final_application_2024.exceptions.FactionNotFound
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 import javax.inject.Inject
@@ -24,8 +25,12 @@ class FactionLocalDatabase @Inject constructor(
         return dao.readAll().toExternal()
     }
 
-    override suspend fun readOne(id: Int): Faction {
-        return dao.readOne(id).toExternal()
+    override suspend fun readOne(id: Int): Result<Faction> {
+        val faction:FactionEntity? = dao.readOne(id)
+        faction?.let {
+            return@readOne Result.success(it.toExternal())
+        }
+        return Result.failure(FactionNotFound())
     }
 
     override fun observeAll(): Flow<Result<List<Faction>>> {

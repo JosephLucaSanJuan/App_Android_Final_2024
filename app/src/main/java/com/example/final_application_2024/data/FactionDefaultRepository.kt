@@ -39,7 +39,7 @@ class FactionDefaultRepository @Inject constructor(
         return remoteDataSource.readAll()
     }
 
-    override suspend fun readOne(id: Int): Faction {
+    override suspend fun readOne(id: Int): Result<Faction> {
         return localDataSource.readOne(id)
     }
 

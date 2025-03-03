@@ -7,6 +7,6 @@ interface FactionRepository {
     suspend fun update(faction:Faction): Result<Faction>
     suspend fun delete(faction:Faction)
     suspend fun readAll():List<Faction>
-    suspend fun readOne(id:Int):Faction
+    suspend fun readOne(id:Int):Result<Faction>
     fun observeAll(): Flow<Result<List<Faction>>>
 }

@@ -29,7 +29,7 @@ interface FactionDao {
     suspend fun readAll():List<FactionEntity>
 
     @Query("SELECT * FROM factions WHERE id LIKE :id")
-    suspend fun readOne(id: Int): FactionEntity
+    suspend fun readOne(id: Int): FactionEntity?
 
     @Query("SELECT * FROM factions")
     fun observeAll(): Flow<List<FactionEntity>>
