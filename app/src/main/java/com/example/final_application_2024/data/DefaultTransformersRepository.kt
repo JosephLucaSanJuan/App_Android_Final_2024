@@ -10,7 +10,14 @@ class DefaultTransformersRepository @Inject constructor(
     private val remoteDataSource: TransformersRemoteDataSource
 ):TransformersRepository {
     override suspend fun create(name:String, altMode:String, gender:String): Result<Transformer> {
-        return remoteDataSource.create(name, altMode, gender)
+        val result = remoteDataSource.create(name, altMode, gender)
+        if (result.isSuccess) {
+            val transformer = result.getOrNull()
+            transformer?.let {
+                localDataSource.create(it)
+            }
+        }
+        return result
     }
 
     override suspend fun update(transformer: Transformer) {
@@ -25,8 +32,8 @@ class DefaultTransformersRepository @Inject constructor(
         return remoteDataSource.readAll()
     }
 
-    override suspend fun readOne(id: Int): Transformer {
-        return remoteDataSource.readOne(id)
+    override suspend fun readOne(id: Int): Result<Transformer> {
+        return localDataSource.readOne(id)
     }
 
     override fun observeAll(): Flow<Result<List<Transformer>>> {

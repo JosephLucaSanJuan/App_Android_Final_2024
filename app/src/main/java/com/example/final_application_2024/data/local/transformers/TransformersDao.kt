@@ -29,7 +29,7 @@ interface TransformersDao {
     suspend fun readAll():List<TransformersEntity>
 
     @Query("SELECT * FROM transformers WHERE id LIKE :id")
-    suspend fun readOne(id:Int): TransformersEntity
+    suspend fun readOne(id:Int): TransformersEntity?
 
     @Query("SELECT * FROM transformers")
     fun observeAll():Flow<List<TransformersEntity>>

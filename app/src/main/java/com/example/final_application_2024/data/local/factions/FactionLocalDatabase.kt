@@ -9,8 +9,9 @@ import javax.inject.Inject
 class FactionLocalDatabase @Inject constructor(
     private val dao: FactionDao
 ): FactionsLocalDataSource {
-    override suspend fun create(name: String) {
-        //dao.create(faction.toLocal())
+    override suspend fun create(faction: Faction): Result<Faction> {
+        dao.create(faction.toLocal())
+        return Result.success(faction)
     }
 
     override suspend fun update(faction: Faction) {

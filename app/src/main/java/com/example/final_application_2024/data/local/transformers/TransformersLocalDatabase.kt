@@ -1,6 +1,7 @@
 package com.example.final_application_2024.data.local.transformers
 
 import com.example.final_application_2024.data.Transformer
+import com.example.final_application_2024.exceptions.TransformerNotFoundException
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 import javax.inject.Inject
@@ -8,8 +9,9 @@ import javax.inject.Inject
 class TransformersLocalDatabase @Inject constructor(
     private val dao: TransformersDao
 ): TransformersLocalDataSource {
-    override suspend fun create(transformers: Transformer) {
+    override suspend fun create(transformers: Transformer): Result<Transformer> {
         dao.create(transformers.toLocal())
+        return Result.success(transformers)
     }
 
     override suspend fun update(transformer: Transformer) {
@@ -24,8 +26,12 @@ class TransformersLocalDatabase @Inject constructor(
         return dao.readAll().toExternal()
     }
 
-    override suspend fun readOne(id: Int): Transformer {
-        return (dao.readOne(id)).toExternal()
+    override suspend fun readOne(id: Int): Result<Transformer> {
+        val entity:TransformersEntity? = dao.readOne(id)
+        entity?.let {
+            return@readOne Result.success(it.toExternal())
+        }
+        return Result.failure(TransformerNotFoundException())
     }
 
     override fun observeAll(): Flow<Result<List<Transformer>>> {
