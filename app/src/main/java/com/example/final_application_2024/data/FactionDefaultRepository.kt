@@ -14,7 +14,7 @@ class FactionDefaultRepository @Inject constructor(
         if (result.isSuccess) {
             val faction = result.getOrNull()
             faction?.let {
-                localDataSource.create(name)
+                localDataSource.create(it)
             }
         }
         return result
