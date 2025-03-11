@@ -42,12 +42,18 @@ class FactionEditFragment @Inject constructor() : Fragment() {
                 viewModel.uiState2.collect {
                     uiState -> when(uiState) {
                         is EditFactionUiState.InitialState -> {
-                            viewModel.getFaction(id)
+                            //viewModel.getFaction(id)
                         }
                         is EditFactionUiState.Error -> {}
-                        is EditFactionUiState.Loading -> {}
+                        is EditFactionUiState.Loading -> {
+                            val result = repository.readOne(id)
+                            if (result.isSuccess) {
+                                val faction = result.getOrNull()
+                                binding.nameInput.setText(faction?.name)
+                            }
+                        }
                         is EditFactionUiState.Finished -> {
-                            val action = CreateFactionFragmentDirections.actionCreateFactionFragmentToFactionFragment()
+                            val action = FactionEditFragmentDirections.actionFactionEditFragmentToFactionFragment()
                             view.findNavController().navigate(action)
                         }
                     }

@@ -43,22 +43,22 @@ class CreateFactionViewModel @Inject constructor(
     fun updateFaction(id:Int) {
         viewModelScope.launch {
             val faction = repository.readOne(id)
-            _uiState.value = CreateFactionListUiState.Loading
+            _uiState2.value = EditFactionUiState.Loading
             val f = faction.getOrNull()
             val result = f?.let { repository.update(it) }
             if (result != null) {
                 if (result.isSuccess) {
-                    _uiState.value = CreateFactionListUiState.Finished
+                    _uiState2.value = EditFactionUiState.Finished
                 } else {
                     result.exceptionOrNull()?.let {
-                        _uiState.value = CreateFactionListUiState.Error(it.toString())
+                        _uiState2.value = EditFactionUiState.Error(it.toString())
                     }
                 }
             }/**/
         }
     }
 
-    fun getFaction(id:Int) {
+    /*fun getFaction(id:Int) {
         viewModelScope.launch {
             val faction = repository.readOne(id)
             val f = faction.getOrNull()
@@ -66,7 +66,7 @@ class CreateFactionViewModel @Inject constructor(
                 _uiState2.value = f?.let { it1 -> EditFactionUiState.InitialState(it1) }!!
             }/**/
         }
-    }
+    }*/
 }
 
 sealed class CreateFactionListUiState {

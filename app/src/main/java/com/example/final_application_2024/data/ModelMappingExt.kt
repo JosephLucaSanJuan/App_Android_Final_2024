@@ -5,6 +5,7 @@ import com.example.final_application_2024.data.remote.AuthResponseUser
 import com.example.final_application_2024.data.remote.FactionCreateWrapper
 import com.example.final_application_2024.data.remote.FactionListItemResponse
 import com.example.final_application_2024.data.remote.FactionListResponse
+import com.example.final_application_2024.data.remote.FactionUpdateWrapper
 import com.example.final_application_2024.data.remote.RegisterResponseBody
 import com.example.final_application_2024.data.remote.TransformerCreateWrapper
 import com.example.final_application_2024.data.remote.TransformersListItemResponse
@@ -62,6 +63,13 @@ fun FactionListItemResponse.toLocal(): Faction {
 }
 
 fun FactionCreateWrapper.toLocal(): Faction {
+    return Faction(
+        id = this.data.id,
+        name = this.data.attributes.name
+    )
+}
+
+fun FactionUpdateWrapper.toLocal(): Faction {
     return Faction(
         id = this.data.id,
         name = this.data.attributes.name

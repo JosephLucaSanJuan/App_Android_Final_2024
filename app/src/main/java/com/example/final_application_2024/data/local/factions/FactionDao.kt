@@ -28,7 +28,7 @@ interface FactionDao {
     @Query("SELECT * FROM factions")
     suspend fun readAll():List<FactionEntity>
 
-    @Query("SELECT * FROM factions WHERE id LIKE :id")
+    @Query("SELECT * FROM factions WHERE id = :id")
     suspend fun readOne(id: Int): FactionEntity?
 
     @Query("SELECT * FROM factions")

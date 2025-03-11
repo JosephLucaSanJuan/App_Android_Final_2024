@@ -7,6 +7,7 @@ import com.example.final_application_2024.data.local.factions.FactionEntity
 import com.example.final_application_2024.data.toExternal
 import com.example.final_application_2024.data.toLocal
 import com.example.final_application_2024.exceptions.FactionDataNotProperlyReceived
+import com.example.final_application_2024.exceptions.FactionNotFound
 import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 data class FactionCreatePayloadWrapper(
@@ -29,7 +30,7 @@ class FactionsRemoteDatabase @Inject constructor(
     }
 
     override suspend fun update(id: String, faction: Faction):Result<Faction> {
-        val response = api.updateFaction(id, faction)
+        val response = api.updateFaction(id, FactionUpdatePayloadWrapper(faction))
         return if (response.isSuccessful) {
             Result.success(response.body()!!.toLocal())
         } else {
@@ -50,8 +51,13 @@ class FactionsRemoteDatabase @Inject constructor(
         }
     }
 
-    override suspend fun readOne(id: String): Faction {
-        return this.api.readOneFaction(id).toExternal()
+    override suspend fun readOne(id: String): Result<Faction> {
+        val result = api.readOneFaction(id)
+        return if (result.isSuccessful) {
+            Result.success(result.body()!!.toExternal())
+        } else {
+            Result.failure(FactionNotFound())
+        }
     }
 
     override fun observeAll(): Flow<List<Faction>> {

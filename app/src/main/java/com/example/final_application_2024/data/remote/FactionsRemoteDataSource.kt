@@ -8,6 +8,6 @@ interface FactionsRemoteDataSource {
     suspend fun update(id: String, faction: Faction): Result<Faction>
     suspend fun delete(id: String)
     suspend fun readAll():List<Faction>
-    suspend fun readOne(id: String): Faction
+    suspend fun readOne(id: String): Result<Faction>
     fun observeAll(): Flow<List<Faction>>
 }
