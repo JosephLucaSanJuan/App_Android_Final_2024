@@ -20,8 +20,14 @@ class DefaultTransformersRepository @Inject constructor(
         return result
     }
 
-    override suspend fun update(transformer: Transformer) {
-        localDataSource.update(transformer)
+    override suspend fun update(id: Int, transformer: Transformer): Result<Transformer> {
+        val result = remoteDataSource.update(id.toString(), transformer)
+        if (result.isSuccess) {
+            transformer.let {
+                localDataSource.update(id, transformer)
+            }
+        }
+        return result
     }
 
     override suspend fun delete(transformer: Transformer) {

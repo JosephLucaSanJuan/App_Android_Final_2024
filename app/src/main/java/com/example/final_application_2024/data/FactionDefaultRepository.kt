@@ -20,12 +20,12 @@ class FactionDefaultRepository @Inject constructor(
         return result
     }
 
-    override suspend fun update(faction: Faction): Result<Faction> {
-        val result = remoteDataSource.update(faction.id.toString(), faction)
+    override suspend fun update(id: Int, faction: Faction): Result<Faction> {
+        val result = remoteDataSource.update(id.toString(), faction)
         if (result.isSuccess) {
             //val faction = result.getOrNull()
             faction.let {
-                localDataSource.update(faction)
+                localDataSource.update(id, faction)
             }
         }
         return result
@@ -41,7 +41,7 @@ class FactionDefaultRepository @Inject constructor(
 
     override suspend fun readOne(id: Int): Result<Faction> {
         val result = localDataSource.readOne(id)
-        return if (result.isFailure) {
+        /*return if (result.isFailure) {
             val newResult = remoteDataSource.readOne(id.toString())
             val faction = result.getOrNull()
             faction?.let {
@@ -50,7 +50,7 @@ class FactionDefaultRepository @Inject constructor(
             return newResult
         } else {
             result
-        }
+        }*/return result
     }
 
     override fun observeAll(): Flow<Result<List<Faction>>> {

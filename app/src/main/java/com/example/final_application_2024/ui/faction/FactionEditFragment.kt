@@ -12,6 +12,7 @@ import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.navArgs
 import com.example.final_application_2024.R
+import com.example.final_application_2024.data.Faction
 import com.example.final_application_2024.data.FactionRepository
 import com.example.final_application_2024.databinding.FragmentFactionEditBinding
 import dagger.hilt.android.AndroidEntryPoint
@@ -40,7 +41,7 @@ class FactionEditFragment @Inject constructor() : Fragment() {
         viewLifecycleOwner.lifecycleScope.launch {
             repeatOnLifecycle(Lifecycle.State.STARTED) {
                 viewModel.uiState2.collect {
-                    uiState -> when(uiState) {
+                    uiState2 -> when(uiState2) {
                         is EditFactionUiState.InitialState -> {
                             //viewModel.getFaction(id)
                         }
@@ -61,7 +62,13 @@ class FactionEditFragment @Inject constructor() : Fragment() {
             }
         }
         binding.updateFaction.setOnClickListener {
-            viewModel.updateFaction(id)
+            viewModel.updateFaction(
+                id,
+                Faction(
+                    id,
+                    binding.nameInput.text.toString()
+                )
+            )
         }
         binding.appBarButton.setNavigationOnClickListener {
             view.findNavController().popBackStack()

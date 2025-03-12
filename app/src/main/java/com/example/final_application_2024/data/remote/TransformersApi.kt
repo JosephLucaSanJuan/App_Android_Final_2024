@@ -14,8 +14,8 @@ interface TransformersApi {
     @POST("api/transformers")
     suspend fun createTransformer(@Body transformer:TransformerCreatePayloadWrapper):Response<TransformerCreateWrapper>
 
-    @PUT("api/transformers")
-    suspend fun updateTransformer(@Body transformer:Transformer):TransformersListResponse
+    @PUT("api/transformers/{id}")
+    suspend fun updateTransformer(@Path("id") id:String, @Body transformer:TransformerUpdatePayloadWrapper):Response<TransformerUpdateWrapper>
 
     @DELETE("api/transformers")
     suspend fun deleteTransformer(@Body transformer:Transformer)//:Response<TransformersListResponse>

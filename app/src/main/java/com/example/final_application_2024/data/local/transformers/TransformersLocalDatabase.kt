@@ -14,8 +14,9 @@ class TransformersLocalDatabase @Inject constructor(
         return Result.success(transformers)
     }
 
-    override suspend fun update(transformer: Transformer) {
+    override suspend fun update(id: Int, transformer: Transformer): Result<Transformer> {
         dao.update(transformer.toLocal())
+        return Result.success(transformer)
     }
 
     override suspend fun delete(transformer: Transformer) {

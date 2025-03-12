@@ -10,6 +10,7 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.findNavController
+import androidx.navigation.fragment.findNavController
 import com.example.final_application_2024.R
 import com.example.final_application_2024.databinding.FragmentTransformerListBinding
 import dagger.hilt.android.AndroidEntryPoint
@@ -32,7 +33,7 @@ class TransformerListFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         val recyclerView = binding.transformersList
-        recyclerView.adapter = TransformersListAdapter()
+        recyclerView.adapter = TransformersListAdapter(::toTransformer)
         viewLifecycleOwner.lifecycleScope.launch {
             repeatOnLifecycle(Lifecycle.State.STARTED) {
                 viewModel.uiState.collect {
@@ -50,5 +51,10 @@ class TransformerListFragment : Fragment() {
             val action = TransformerListFragmentDirections.actionTransformerListFragmentToCreateRobotFragment()
             view.findNavController().navigate(action)
         }
+    }
+
+    private fun toTransformer(id:Int) {
+        val action = TransformerListFragmentDirections.actionTransformerListFragmentToTransformerEditFragment(id)
+        findNavController().navigate(action)
     }
 }

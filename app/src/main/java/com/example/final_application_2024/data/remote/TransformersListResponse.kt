@@ -1,6 +1,7 @@
 package com.example.final_application_2024.data.remote
 
 import com.example.final_application_2024.data.Faction
+import com.example.final_application_2024.data.Transformer
 
 data class TransformersListResponse(
     /*val count:Int,
@@ -31,6 +32,14 @@ data class TransformerCreatePayload(
     val name:String,
     val altMode:String,
     val gender:String
+)
+
+data class TransformerUpdatePayloadWrapper(
+    val data: Transformer
+)
+
+data class TransformerUpdateWrapper(
+    val data: TransformersListItemResponse
 )
 
 data class FactionListResponse(

@@ -8,9 +8,12 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.final_application_2024.data.Transformer
 import com.example.final_application_2024.databinding.TransformersListContentBinding
 
-class TransformersListAdapter:ListAdapter<
+class TransformersListAdapter(
+    private val toTransformerEdit:(Int) -> Unit
+):ListAdapter<
         Transformer,
-        TransformersListAdapter.TransformersViewHolder>(TransformersDiffCallback) {
+        TransformersListAdapter.TransformersViewHolder
+        >(TransformersDiffCallback) {
     inner class TransformersViewHolder(
         private val binding:TransformersListContentBinding
     ):RecyclerView.ViewHolder(binding.root){
@@ -18,6 +21,9 @@ class TransformersListAdapter:ListAdapter<
             binding.transformerName.text = transformer.name
             binding.alternateMode.text = transformer.alternateMode
             binding.gender.text = transformer.gender
+            binding.root.setOnClickListener {
+                toTransformerEdit(transformer.id)
+            }
         }
     }
 

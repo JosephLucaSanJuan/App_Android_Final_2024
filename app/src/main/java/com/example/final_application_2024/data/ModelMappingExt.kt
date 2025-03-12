@@ -8,6 +8,7 @@ import com.example.final_application_2024.data.remote.FactionListResponse
 import com.example.final_application_2024.data.remote.FactionUpdateWrapper
 import com.example.final_application_2024.data.remote.RegisterResponseBody
 import com.example.final_application_2024.data.remote.TransformerCreateWrapper
+import com.example.final_application_2024.data.remote.TransformerUpdateWrapper
 import com.example.final_application_2024.data.remote.TransformersListItemResponse
 import com.example.final_application_2024.data.remote.TransformersListResponse
 
@@ -36,6 +37,15 @@ fun TransformersListItemResponse.toLocal(): Transformer {
 }
 
 fun TransformerCreateWrapper.toLocal(): Transformer {
+    return Transformer(
+        id = this.data.id,
+        name = this.data.attributes.name,
+        alternateMode = this.data.attributes.altMode,
+        gender = this.data.attributes.gender
+    )
+}
+
+fun TransformerUpdateWrapper.toLocal(): Transformer {
     return Transformer(
         id = this.data.id,
         name = this.data.attributes.name,

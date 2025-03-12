@@ -4,6 +4,7 @@ import com.example.final_application_2024.data.Transformer
 import com.example.final_application_2024.data.toExternal
 import com.example.final_application_2024.data.toLocal
 import com.example.final_application_2024.exceptions.TransformerDataNotProperlyReceived
+import com.example.final_application_2024.exceptions.TransformerNotFoundException
 import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 
@@ -21,8 +22,13 @@ class TransformersNetworkDatabase @Inject constructor(
         }
     }
 
-    override suspend fun update(transformer: Transformer) {
-        api.updateTransformer(transformer)
+    override suspend fun update(id: String, transformer: Transformer): Result<Transformer> {
+        val response = api.updateTransformer(id, TransformerUpdatePayloadWrapper(transformer))
+        return if (response.isSuccessful) {
+            Result.success(response.body()!!.toLocal())
+        } else {
+            Result.failure(TransformerNotFoundException())
+        }
     }
 
     override suspend fun delete(transformer: Transformer) {

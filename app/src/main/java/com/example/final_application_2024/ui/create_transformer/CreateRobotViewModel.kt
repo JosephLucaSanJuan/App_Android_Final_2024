@@ -20,6 +20,10 @@ class CreateRobotViewModel @Inject constructor(
     val uiState
         get() = _uiState.asStateFlow()
 
+    private val _uiState2 = MutableStateFlow<EditTransformerUiState>(EditTransformerUiState.Loading)
+    val uiState2
+        get() = _uiState2.asStateFlow()
+
     fun createRobot(name:String, altMode:String, gender:String) {
         //val newTF = Transformer(0, name, altMode, gender)
         viewModelScope.launch {
@@ -35,6 +39,20 @@ class CreateRobotViewModel @Inject constructor(
         }
     }
 
+    fun updateRobot(id:Int, transformer:Transformer) {
+        viewModelScope.launch {
+            _uiState2.value = EditTransformerUiState.Loading
+            val result = transformer.let{ repository.update(id, it) }
+            if (result.isSuccess) {
+                _uiState2.value = EditTransformerUiState.Finished
+            } else {
+                result.exceptionOrNull()?.let {
+                    _uiState2.value = EditTransformerUiState.Error(it.toString())
+                }
+            }
+        }
+    }
+
 }
 
 sealed class CreateRobotListUiState {
@@ -42,6 +60,13 @@ sealed class CreateRobotListUiState {
     data object Loading : CreateRobotListUiState()
     data class Error(val message:String) : CreateRobotListUiState()
     data object Finished : CreateRobotListUiState()
+}
+
+sealed class EditTransformerUiState {
+    data object InitialState : EditTransformerUiState()
+    data object Loading : EditTransformerUiState()
+    data class Error(val message:String) : EditTransformerUiState()
+    data object Finished : EditTransformerUiState()
 }
 
 data class CreateRobotUiState(

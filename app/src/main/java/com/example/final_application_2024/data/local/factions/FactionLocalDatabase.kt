@@ -14,7 +14,7 @@ class FactionLocalDatabase @Inject constructor(
         return Result.success(faction)
     }
 
-    override suspend fun update(faction: Faction): Result<Faction> {
+    override suspend fun update(id:Int, faction: Faction): Result<Faction> {
         dao.update(faction.toLocal())
         return Result.success(faction)
     }

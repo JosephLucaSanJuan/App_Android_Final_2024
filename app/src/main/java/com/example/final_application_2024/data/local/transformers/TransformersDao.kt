@@ -28,7 +28,7 @@ interface TransformersDao {
     @Query("SELECT * FROM transformers")
     suspend fun readAll():List<TransformersEntity>
 
-    @Query("SELECT * FROM transformers WHERE id LIKE :id")
+    @Query("SELECT * FROM transformers WHERE id = :id")
     suspend fun readOne(id:Int): TransformersEntity?
 
     @Query("SELECT * FROM transformers")

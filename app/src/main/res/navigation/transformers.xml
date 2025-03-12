@@ -13,6 +13,9 @@
         <action
             android:id="@+id/action_transformerListFragment_to_createRobotFragment"
             app:destination="@id/createRobotFragment" />
+        <action
+            android:id="@+id/action_transformerListFragment_to_transformerEditFragment"
+            app:destination="@id/transformerEditFragment" />
     </fragment>
     <fragment
         android:id="@+id/createRobotFragment"
@@ -22,5 +25,17 @@
         <action
             android:id="@+id/action_createRobotFragment_to_transformerListFragment"
             app:destination="@id/transformerListFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/transformerEditFragment"
+        android:name="com.example.final_application_2024.ui.transformer.TransformerEditFragment"
+        android:label="fragment_transformer_edit"
+        tools:layout="@layout/fragment_transformer_edit" >
+        <action
+            android:id="@+id/action_transformerEditFragment_to_transformerListFragment"
+            app:destination="@id/transformerListFragment" />
+        <argument
+            android:name="ID"
+            app:argType="integer" />
     </fragment>
 </navigation>
